@@ -5317,6 +5317,11 @@ function showHelpTab(id,btn){
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeHelp();});
 
+
+window.addEventListener('message', function(event) {
+  if (event.origin !== 'https://lon-ka.github.io') return;
+  if (event.data && event.data.type === 'OPEN_HELP') openHelp();
+});
 </script>
 </body>
 </html>
