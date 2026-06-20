@@ -403,7 +403,7 @@ if (window.self === window.top) {
       <div class="logo-sub">Digitale geletterdheid · intern platform</div>
     </div>
   </div>
-  <button onclick="openHelp()" title="Help" style="background:rgba(255,255,255,.12);border:none;border-radius:7px;color:white;padding:5px 10px;cursor:pointer;font-size:12px;font-family:inherit;font-weight:600;display:inline-flex;align-items:center;gap:5px">&#63; Help</button><span class="logo-pill">OVSG · Leer Lokaal</span>
+  <span class="logo-pill">OVSG · Leer Lokaal</span>
   <nav class="topnav">
     <button class="tnav" onclick="openHelp()" id="nav-help">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
@@ -5296,7 +5296,7 @@ async function loadJaarplanFromSP() {
 dkInit().then(() => {
   updateCounts();
   renderGrid();
-  showView('start');
+  showView('zelfscan');
 });
 
 function openHelp(){
