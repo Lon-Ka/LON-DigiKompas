@@ -207,6 +207,11 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .zs-sec-t.comp{color:var(--comp)}
 .zsq{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:6px}
 .zsq-t{font-size:13px;font-weight:500;margin-bottom:7px}
+.zsq-vb{font-size:12px;color:var(--muted);font-style:italic;margin:-3px 0 7px}
+.zsq-doel{font-size:10.5px;color:var(--muted);opacity:.75;margin:-3px 0 7px}
+.zs-tipbox{background:var(--bg);border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:9px 12px;margin-bottom:10px;font-size:12px}
+.zs-tipbox b{font-size:11px}
+.zs-tipbox .zs-tip-vb{color:var(--muted);font-style:italic;margin-top:3px}
 .zsopts{display:flex;gap:4px}
 .zsopt{flex:1;padding:5px 4px;border:1.5px solid var(--border);border-radius:7px;font-size:10px;font-weight:600;cursor:pointer;background:var(--bg);color:var(--muted);transition:all .12s;text-align:center;font-family:var(--font-b)}
 .zsopt:hover{border-color:var(--ict);color:var(--ict)}
@@ -259,6 +264,14 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 /* ── UNPLUGGED BADGE ── */
 .up-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:20px;background:#fff3cd;color:#7a5800;border:1px solid #e6c84a}
 .card .up-badge{margin-top:auto}
+.gegeven-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:.02em;padding:2px 7px;border-radius:20px;margin-top:auto;width:fit-content}
+.gegeven-nu{background:#e3f6e9;color:#1a7a42;border:1px solid #8fd6a8}
+.gegeven-vorig{background:#fdeee3;color:#a34c12;border:1px solid #f0b788}
+.beoordeling-badge{display:inline-flex;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:#b8860b;margin-left:8px}
+.gegeven-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:8px 16px;border-radius:9px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer}
+.gegeven-toggle:hover{background:var(--border)}
+.gegeven-toggle.on{background:#e3f6e9;border-color:#8fd6a8;color:#1a7a42}
+.gegeven-warn{margin-top:12px;padding:9px 14px;border-radius:8px;background:#fdeee3;border:1.5px solid #f0b788;color:#a34c12;font-size:.82rem;font-weight:600}
 .dig-codes{display:flex;gap:3px;flex-wrap:wrap;margin-top:4px}
 .dig-code{font-size:9px;font-weight:800;padding:1px 6px;border-radius:4px;background:var(--bg);border:1px solid var(--border);color:var(--muted);letter-spacing:.03em;font-family:monospace}
 .dig-code.ict{background:var(--ict-l);border-color:var(--ict);color:var(--ict)}
@@ -428,6 +441,10 @@ if (window.self === window.top) {
     <button class="tnav" onclick="showView('leerplan')" id="nav-leerplan">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
       Leerplan
+    </button>
+    <button class="tnav" onclick="showView('team')" id="nav-team" style="display:none">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Team
     </button>
     <button class="tnav" onclick="showView('over')" id="nav-over">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -834,6 +851,23 @@ if (window.self === window.top) {
       <a href="https://klascemen.be" target="_blank" class="ov-link">↗ KlasCement — Vlaamse leerplatform voor leerkrachten</a>
     </div>
 
+  </div>
+</div>
+
+<!-- ══════════ TEAM VIEW (enkel coördinator/directie) ══════════ -->
+<div id="view-team" style="display:none">
+  <div class="ov-wrap">
+    <div class="ov-title">Teamoverzicht — gegeven lessen</div>
+    <p style="color:var(--muted);font-size:.88rem;margin:-8px 0 18px;">Welke lessen gaf het team dit schooljaar al, en door wie — zo vermijd je dat dezelfde les twee keer op de planning staat.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
+      <label style="font-size:.82rem;font-weight:600;color:var(--muted);">Schooljaar:</label>
+      <select id="team-sj-select" onchange="renderTeamOverzicht()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.82rem;"></select>
+      <label style="font-size:.82rem;font-weight:600;color:var(--muted);margin-left:8px;">Leerkracht:</label>
+      <select id="team-docent-select" onchange="renderTeamOverzicht()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:inherit;font-size:.82rem;max-width:260px;">
+        <option value="">Alle leerkrachten</option>
+      </select>
+    </div>
+    <div id="team-content"></div>
   </div>
 </div>
 
@@ -3114,29 +3148,39 @@ LESSONS.forEach(l => {
 // ═══════════════════════════════════════════════════════════
 const DK_CONFIG = {
   KA: {
-    clientId:   '481e8cb4-58ca-49b1-bb8b-5b02cbb45b4c',
+    clientId:   'b427a5ba-542f-4254-8ca0-5fa41b1d130a',
     tenantId:   '165074eb-b8b7-49e8-a9b4-54cac7939ed2',
+    siteId:     'gebaskabe.sharepoint.com,0af3ab31-8b22-413c-956f-047ffbbcf86c,e0158228-22a6-4225-87dc-fe7d619ae7e4',
+    lijsten: {
+      zelfscan:     '38b0af13-8988-40c1-89a2-19ee2f0da5e9',
+      jaarplan:     'd847a8d2-b3ac-411f-917c-18f6583793a0',
+      lesreflectie: 'bdc44cf1-75f3-4dbe-a715-1c4bb4159aba',
+      lesgegeven:   'fd76657d-3bd2-43b5-88ed-669e0d129c04',
+    },
+    redirectUri: 'https://lon-ka.github.io/KA-DigiKompas/',
+  },
+  LON: {
+    clientId:   '481e8cb4-58ca-49b1-bb8b-5b02cbb45b4c',
+    tenantId:   '655d15e1-e5fc-4868-8462-8463dc0ff014',
     siteId:     'londerzeel.sharepoint.com,0af3ab31-8b22-413c-956f-047ffbbcf86c,e0158228-22a6-4225-87dc-fe7d619ae7e4',
     lijsten: {
       zelfscan:     '38b0af13-8988-40c1-89a2-19ee2f0da5e9',
       jaarplan:     'd847a8d2-b3ac-411f-917c-18f6583793a0',
       lesreflectie: 'bdc44cf1-75f3-4dbe-a715-1c4bb4159aba',
+      lesgegeven:   '', // TODO: aanmaken in SharePoint — zie SHAREPOINT_LIJST_LESGEGEVEN.md
     },
-    redirectUri: 'https://lon-ka.github.io/LON-DigiKompas/',
-  },
-  LON: {
-    // TODO: invullen na LON setup
-    clientId:   '',
-    tenantId:   '',
-    siteId:     '',
-    lijsten:    { zelfscan: '', jaarplan: '', lesreflectie: '' },
     redirectUri: 'https://lon-ka.github.io/LON-DigiKompas/',
   }
 };
 
-// Detecteer tenant op basis van domein (pas aan indien nodig)
-const TENANT = 'KA';
+// Vaste tenant per deployment — deze gedeelde basisversie wordt naar 2 aparte
+// repos gepubliceerd (KA-DigiKompas en LON-DigiKompas), telkens met een eigen
+// waarde hier. Geen runtime-detectie nodig: elke repo/URL is altijd dezelfde school.
+const TENANT = 'LON';
 const CFG = DK_CONFIG[TENANT];
+
+// Teamtoegang wordt niet via e-mailadressen in de code bepaald, maar via de
+// SharePoint-rechten op de 'lesgegeven'-lijst zelf — zie teamToegangProbe() verderop.
 
 // ── MSAL ────────────────────────────────────────────────────
 var msalApp = null;
@@ -3169,41 +3213,60 @@ async function dkInit() {
   }
   if (dkUser) {
     dkEmail = (dkUser.username || '').toLowerCase();
+    dkNaam  = dkUser.name || dkEmail;
     console.log('DigiKompas: aangemeld als', dkEmail);
   }
 }
 
 var dkEmail = '';
+var dkNaam  = '';
 
 // ── GRAPH HELPERS ────────────────────────────────────────────
 async function dkGet(url) {
-  if(!dkToken) return null;
+  if(!dkToken) { console.warn('DigiKompas: dkGet zonder token —', url); return null; }
   const r = await fetch('https://graph.microsoft.com/v1.0' + url, {
-    headers: { Authorization: 'Bearer ' + dkToken }
+    headers: {
+      Authorization: 'Bearer ' + dkToken,
+      // Staat toe te filteren op niet-geïndexeerde SharePoint-kolommen (bv. Email, LesID,
+      // Schooljaar). Zonder deze header geeft SharePoint een 400 BadRequest terug.
+      Prefer: 'HonorNonIndexedQueriesWarningMayFailRandomly',
+    }
   });
-  if(!r.ok) return null;
+  if(!r.ok) {
+    const body = await r.text().catch(()=> '');
+    console.error('DigiKompas: dkGet mislukt (' + r.status + ')', url, body);
+    return null;
+  }
   return r.json();
 }
 
 async function dkPost(url, body) {
-  if(!dkToken) return null;
+  if(!dkToken) { console.warn('DigiKompas: dkPost zonder token —', url); return null; }
   const r = await fetch('https://graph.microsoft.com/v1.0' + url, {
     method: 'POST',
     headers: { Authorization: 'Bearer ' + dkToken, 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-  if(!r.ok) return null;
+  if(!r.ok) {
+    const errBody = await r.text().catch(()=> '');
+    console.error('DigiKompas: dkPost mislukt (' + r.status + ')', url, errBody);
+    return null;
+  }
   return r.json();
 }
 
 async function dkPatch(url, body) {
-  if(!dkToken) return null;
+  if(!dkToken) { console.warn('DigiKompas: dkPatch zonder token —', url); return null; }
   const r = await fetch('https://graph.microsoft.com/v1.0' + url, {
     method: 'PATCH',
     headers: { Authorization: 'Bearer ' + dkToken, 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
-  if(!r.ok) return null;
+  if(!r.ok) {
+    const errBody = await r.text().catch(()=> '');
+    console.error('DigiKompas: dkPatch mislukt (' + r.status + ')', url, errBody);
+    return null;
+  }
   return r.json();
 }
 
@@ -3251,7 +3314,7 @@ async function saveJaarplan(fase, leerjaar, plan) {
 
 async function loadJaarplan(fase) {
   if(!dkToken || !dkEmail) return null;
-  const data = await dkGet(spUrl(CFG.lijsten.jaarplan) + '?$filter=fields/Email eq \'' + dkEmail + '\' and fields/Fase eq \'' + fase + '\'&$select=fields');
+  const data = await dkGet(spUrl(CFG.lijsten.jaarplan) + '?$filter=fields/Email eq \'' + dkEmail + '\' and fields/Fase eq \'' + fase + '\'&$expand=fields');
   if(data && data.value && data.value.length > 0) {
     try { return JSON.parse(data.value[0].fields.Plan); } catch(e) { return null; }
   }
@@ -3280,9 +3343,9 @@ async function saveReflectie(les, sterktes, verbeterpunten, tips, beoordeling, a
 
 async function loadReflecties(lesId) {
   if(!dkToken) return [];
-  const data = await dkGet(spUrl(CFG.lijsten.lesreflectie) + '?$filter=fields/LesID eq ' + lesId + '&$select=fields&$top=50');
+  const data = await dkGet(spUrl(CFG.lijsten.lesreflectie) + '?$filter=fields/LesID eq ' + lesId + '&$expand=fields&$top=50');
   if(!data || !data.value) return [];
-  return data.value.map(item => ({
+  return data.value.filter(item => item.fields).map(item => ({
     email:          item.fields.Email,
     datum:          item.fields.Datum,
     sterktes:       item.fields.Sterktes || '',
@@ -3294,6 +3357,150 @@ async function loadReflecties(lesId) {
   }));
 }
 
+// ── LESGEGEVEN — bijhouden welke lessen een leerkracht dit schooljaar al gaf ──
+// Schooljaar loopt van 1 september t.e.m. 31 augustus.
+function getSchoolJaar(d) {
+  d = d || new Date();
+  const y = d.getFullYear();
+  return (d.getMonth() >= 8) ? (y + '-' + (y + 1)) : ((y - 1) + '-' + y);
+}
+function vorigSchoolJaar(sj) {
+  const [a, b] = sj.split('-').map(Number);
+  return (a - 1) + '-' + (b - 1);
+}
+
+// In-memory cache van de eigen 'gegeven'-lessen: Map<lesId, [{schoolJaar, datum, bron}]>
+let lesGegevenEigen = new Map();
+let lesGegevenGeladen = false;
+
+async function markLesGegeven(les, bron) {
+  if(!dkToken || !dkEmail || !CFG.lijsten.lesgegeven) { console.warn('DigiKompas: kan les niet als gegeven markeren — geen login of geen lesgegeven-lijst gekoppeld.'); return false; }
+  const schoolJaar = getSchoolJaar();
+  const basisVelden = {
+    Title:      dkEmail + ' - ' + les.titel + ' - ' + schoolJaar,
+    Email:      dkEmail,
+    Datum:      new Date().toISOString(),
+    LesID:      les.id,
+    Lesnaam:    les.titel,
+    Fase:       les.f,
+    Leerlijn:   les.ll,
+    Schooljaar: schoolJaar,
+    Bron:       bron || 'handmatig', // 'handmatig' of 'jaarplanner'
+  };
+  // Probeer eerst mét naam; als de kolom 'Naam' nog niet bestaat in SharePoint,
+  // val terug op opslaan zonder naam zodat de kernfunctie blijft werken.
+  let result = await dkPost(spUrl(CFG.lijsten.lesgegeven), { fields: { ...basisVelden, Naam: dkNaam } });
+  if(!result) {
+    console.warn('DigiKompas: opslaan met Naam-veld mislukt, probeer zonder (kolom \'Naam\' bestaat mogelijk nog niet) …');
+    result = await dkPost(spUrl(CFG.lijsten.lesgegeven), { fields: basisVelden });
+  }
+  if(!result) {
+    alert('Kon niet opslaan naar SharePoint. Open de browserconsole (F12) voor het foutdetail, of probeer later opnieuw.');
+    return false;
+  }
+  if(!lesGegevenEigen.has(les.id)) lesGegevenEigen.set(les.id, []);
+  lesGegevenEigen.get(les.id).push({ schoolJaar, datum: new Date().toISOString(), bron: bron || 'handmatig' });
+  return true;
+}
+
+async function unmarkLesGegeven(lesId) {
+  if(!dkToken || !dkEmail || !CFG.lijsten.lesgegeven) return;
+  const schoolJaar = getSchoolJaar();
+  const data = await dkGet(spUrl(CFG.lijsten.lesgegeven) + '?$filter=fields/Email eq \'' + dkEmail + '\' and fields/LesID eq ' + lesId + ' and fields/Schooljaar eq \'' + schoolJaar + '\'&$select=id');
+  if(data && data.value) {
+    for(const item of data.value) {
+      await fetch('https://graph.microsoft.com/v1.0' + spUrl(CFG.lijsten.lesgegeven) + '/' + item.id, {
+        method: 'DELETE', headers: { Authorization: 'Bearer ' + dkToken }
+      });
+    }
+  }
+  const arr = (lesGegevenEigen.get(lesId) || []).filter(x => x.schoolJaar !== schoolJaar);
+  lesGegevenEigen.set(lesId, arr);
+}
+
+// Laadt alle eigen 'gegeven'-lessen (huidig + vorig schooljaar) — 1x aangeroepen bij opstart.
+// Gemiddelde sterrenbeoordeling per les, voor de badge op de lessenkaarten.
+// Eén query voor alle lessen samen i.p.v. per les apart.
+let lesBeoordelingen = new Map();
+async function loadAlleBeoordelingen() {
+  if(!dkToken || !CFG.lijsten.lesreflectie) return;
+  const data = await dkGet(spUrl(CFG.lijsten.lesreflectie) + '?$expand=fields&$top=2000');
+  if(!data || !data.value) return;
+  const perLes = new Map();
+  data.value.forEach(item => {
+    const f = item.fields;
+    if(!f || !f.LesID || !(f.Beoordeling > 0)) return;
+    if(!perLes.has(f.LesID)) perLes.set(f.LesID, []);
+    perLes.get(f.LesID).push(f.Beoordeling);
+  });
+  lesBeoordelingen = new Map();
+  perLes.forEach((scores, lesId) => {
+    lesBeoordelingen.set(lesId, { gemiddelde: scores.reduce((a,b)=>a+b,0) / scores.length, aantal: scores.length });
+  });
+}
+
+async function loadEigenGegevenLessen() {
+  if(!dkToken || !dkEmail || !CFG.lijsten.lesgegeven) { lesGegevenGeladen = true; return; }
+  const data = await dkGet(spUrl(CFG.lijsten.lesgegeven) + '?$filter=fields/Email eq \'' + dkEmail + '\'&$expand=fields&$top=500');
+  lesGegevenEigen = new Map();
+  if(data && data.value) {
+    data.value.forEach(item => {
+      const f = item.fields;
+      if(!f || !f.LesID) return;
+      if(!lesGegevenEigen.has(f.LesID)) lesGegevenEigen.set(f.LesID, []);
+      lesGegevenEigen.get(f.LesID).push({ schoolJaar: f.Schooljaar, datum: f.Datum, bron: f.Bron });
+    });
+  }
+  lesGegevenGeladen = true;
+}
+
+function lesGegevenInfo(lesId) {
+  const entries = lesGegevenEigen.get(lesId) || [];
+  const huidig = getSchoolJaar();
+  const vorig  = vorigSchoolJaar(huidig);
+  return {
+    ditJaar:   entries.some(e => e.schoolJaar === huidig),
+    vorigJaar: entries.some(e => e.schoolJaar === vorig),
+    laatste:   entries.length ? entries.map(e=>e.schoolJaar).sort().reverse()[0] : null,
+  };
+}
+
+// Teamoverzicht (coördinator/directie): alle 'gegeven'-lessen van het hele team voor een schooljaar.
+async function loadTeamGegevenLessen(schoolJaar) {
+  if(!dkToken || !CFG.lijsten.lesgegeven) return [];
+  schoolJaar = schoolJaar || getSchoolJaar();
+  const data = await dkGet(spUrl(CFG.lijsten.lesgegeven) + '?$filter=fields/Schooljaar eq \'' + schoolJaar + '\'&$expand=fields&$top=2000');
+  if(!data || !data.value) return [];
+  return data.value.filter(item => item.fields).map(item => ({
+    email:    item.fields.Email,
+    naam:     item.fields.Naam || item.fields.Email,
+    lesId:    item.fields.LesID,
+    lesNaam:  item.fields.Lesnaam,
+    fase:     item.fields.Fase,
+    leerlijn: item.fields.Leerlijn,
+    datum:    item.fields.Datum,
+    bron:     item.fields.Bron,
+  }));
+}
+
+// ── TEAMTOEGANG (rechten-gebaseerd, geen e-mailadressen in de code) ──────────
+// Idee: op de 'lesgegeven'-lijst staat item-niveau-beveiliging ("Read items that
+// were created by the user") voor gewone leerkrachten, en volledige leesrechten
+// voor een SharePoint-groep coördinatoren/directie. We vragen gewoon alle items
+// op (zonder e-mailfilter) en laten SharePoint zelf bepalen wat er terugkomt:
+// - komt er een item van een ANDER e-mailadres dan het eigen terug? → volledige
+//   teamtoegang → Team-tabblad tonen.
+// - komt er enkel eigen data (of niets) terug? → geen teamtoegang → verbergen.
+// Zie SHAREPOINT_LIJST_LESGEGEVEN.md voor hoe je die rechten instelt.
+let heeftTeamToegang = false;
+async function teamToegangProbe() {
+  if(!dkToken || !dkEmail || !CFG.lijsten.lesgegeven) { heeftTeamToegang = false; return false; }
+  const data = await dkGet(spUrl(CFG.lijsten.lesgegeven) + '?$expand=fields&$top=50');
+  if(!data || !data.value) { heeftTeamToegang = false; return false; }
+  heeftTeamToegang = data.value.some(item => item.fields && (item.fields.Email || '').toLowerCase() !== dkEmail);
+  return heeftTeamToegang;
+}
+
 // ═══════════════════════════════════════════
 // STATE
 // ═══════════════════════════════════════════
@@ -3303,7 +3510,7 @@ let aF='all', aP='all', aU='all', openId=null;
 // VIEW ROUTING
 // ═══════════════════════════════════════════
 function showView(n){
-  ['start','lessen','leerlijn','zelfscan','jaarplanner','over','leerplan'].forEach(v=>{
+  ['start','lessen','leerlijn','zelfscan','jaarplanner','over','leerplan','team'].forEach(v=>{
     const el=document.getElementById('view-'+v);
     if(el)el.style.display=(v===n)?(v==='lessen'?'flex':'block'):'none';
     const btn=document.getElementById('nav-'+v);
@@ -3312,6 +3519,7 @@ function showView(n){
   if(n==='leerlijn')renderLL();
   if(n==='zelfscan')renderZS();
   if(n==='jaarplanner')renderJP();
+  if(n==='team')renderTeamOverzicht();
 }
 function setLLTab(tab, btn) {
   document.querySelectorAll('.ll-panel').forEach(p => p.style.display = 'none');
@@ -3379,14 +3587,23 @@ function renderGrid(){
     grid.innerHTML=`<div class="empty"><svg width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>Geen lessen gevonden.</p></div>`;
     return;
   }
-  grid.innerHTML=filtered.map(l=>`<div class="card ${l.ll}" onclick="openLesson(${l.id})">
+  grid.innerHTML=filtered.map(l=>{
+    const gi = lesGegevenInfo(l.id);
+    const gegevenBadge = gi.ditJaar
+      ? `<span class="gegeven-badge gegeven-nu" title="Al gegeven dit schooljaar (${getSchoolJaar()})">✓ gegeven ${getSchoolJaar()}</span>`
+      : (gi.vorigJaar ? `<span class="gegeven-badge gegeven-vorig" title="Gegeven vorig schooljaar — overweeg een andere les">⚠ gegeven ${vorigSchoolJaar(getSchoolJaar())}</span>` : '');
+    const beo = lesBeoordelingen.get(l.id);
+    const beoordelingBadge = beo ? `<span class="beoordeling-badge" title="${beo.aantal} beoordeling${beo.aantal>1?'en':''}">⭐ ${beo.gemiddelde.toFixed(1)}</span>` : '';
+    return `<div class="card ${l.ll}" onclick="openLesson(${l.id})">
     <span class="ctag ${l.ll}">${LL[l.ll]}</span>
     <div class="ctitle">${l.titel}</div>
-    <div class="cmeta"><span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${l.duur}</span></div>
+    <div class="cmeta"><span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${l.duur}</span>${beoordelingBadge}</div>
     ${l.dig_codes&&l.dig_codes.length?'<div class="dig-codes">'+l.dig_codes.map(c=>'<span class="dig-code '+l.ll+'">'+c+'</span>').join('')+'</div>':''}
     ${l.unplugged?'<span class="up-badge">✂ unplugged</span>':''}
+    ${gegevenBadge}
     <div class="cphase">${FL[l.f]}</div>
-  </div>`).join('');
+  </div>`;
+  }).join('');
 }
 
 // ═══════════════════════════════════════════
@@ -3394,6 +3611,27 @@ function renderGrid(){
 // ═══════════════════════════════════════════
 function openLesson(id){openId=id;renderGrid();window.scrollTo(0,0);}
 function closeLesson(){openId=null;renderGrid();}
+
+async function toggleLesGegeven(lesId){
+  const l=LESSONS.find(x=>x.id===lesId);
+  if(!l) return;
+  const gi=lesGegevenInfo(lesId);
+  if(gi.ditJaar) await unmarkLesGegeven(lesId);
+  else await markLesGegeven(l,'handmatig');
+  renderGrid();
+  renderJPGrid();
+}
+
+// Zelfde toggle, maar vanuit de jaarplanner aangeroepen (bron: 'jaarplanner')
+async function toggleLesGegevenJP(lesId){
+  const l=LESSONS.find(x=>x.id===lesId);
+  if(!l) return;
+  const gi=lesGegevenInfo(lesId);
+  if(gi.ditJaar) await unmarkLesGegeven(lesId);
+  else await markLesGegeven(l,'jaarplanner');
+  renderJPGrid();
+  if(openId===lesId) renderGrid();
+}
 
 function renderDetail(id){
   const l=LESSONS.find(x=>x.id===id);
@@ -3421,13 +3659,22 @@ function renderDetail(id){
       ${l.unplugged?'<span class="up-badge">✂ unplugged — geen computer nodig</span>':''}
     </div>
     <div class="ddoel">${l.doel_lang}</div>
+    ${(() => {
+      const gi = lesGegevenInfo(l.id);
+      const sj = getSchoolJaar();
+      const warn = gi.vorigJaar ? `<div class="gegeven-warn">⚠ Je gaf deze les al in schooljaar <strong>${vorigSchoolJaar(sj)}</strong>. Overweeg een andere les voor dit jaar.</div>` : '';
+      const btn = gi.ditJaar
+        ? `<button class="gegeven-toggle on" onclick="toggleLesGegeven(${l.id})">☑ Gegeven dit schooljaar (${sj}) — klik om ongedaan te maken</button>`
+        : `<button class="gegeven-toggle" onclick="toggleLesGegeven(${l.id})">☐ Ik gaf deze les dit schooljaar (${sj})</button>`;
+      return warn + btn;
+    })()}
   </div>
   <div class="dtab-row">
     <button class="dtab active" onclick="switchTab(this,'tab-les')">Lesverloop</button>
     <button class="dtab" onclick="switchTab(this,'tab-doelen')">Leerdoelen</button>
     <button class="dtab" onclick="switchTab(this,'tab-mat')">Materialen & differentiatie</button>
     <button class="dtab" onclick="switchTab(this,'tab-eval')">Evaluatie</button>
-    <button class="dtab" onclick="switchTab(this,'tab-reflectie');loadReflectiesTab(${l.id})">💬 Reflecties</button>
+    <button class="dtab" onclick="switchTab(this,'tab-reflectie');loadReflectiesTab(${l.id})">⭐ Beoordeling</button>
   </div>
   <div class="dbody">
     <div class="dtab-content active" id="tab-les">
@@ -3491,12 +3738,11 @@ function renderDetail(id){
     rfDiv.className = 'dtab-content';
     rfDiv.id = 'tab-reflectie';
     rfDiv.innerHTML = `
-    <div class="dtab-content" id="tab-reflectie">
       <div class="dsec">
-        <div class="dsec-title">💬 Lesreflecties</div>
-        <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.5;">Deel je ervaringen. Reflecties van collega's zijn anoniem zichtbaar als inspiratie.</p>
+        <div class="dsec-title">⭐ Beoordeling</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:16px;line-height:1.5;">Deel je ervaringen. Beoordelingen van collega's zijn anoniem zichtbaar als inspiratie.</p>
         <div id="reflectie-form" style="background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px;">
-          <div style="font-size:.85rem;font-weight:700;margin-bottom:12px;">📝 Voeg jouw reflectie toe</div>
+          <div style="font-size:.85rem;font-weight:700;margin-bottom:12px;">📝 Voeg jouw beoordeling toe</div>
           <label style="font-size:.75rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Wat werkte goed?</label>
           <textarea id="rf-sterktes" rows="2" style="width:100%;padding:8px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:.82rem;margin-bottom:10px;resize:vertical;"></textarea>
           <label style="font-size:.75rem;font-weight:600;color:var(--muted);display:block;margin-bottom:4px;">Wat kan beter?</label>
@@ -3522,10 +3768,9 @@ function renderDetail(id){
           <button onclick="submitReflectie()" style="margin-top:14px;padding:9px 20px;background:#0F1D2E;color:#fff;border:none;border-radius:8px;font-family:inherit;font-size:.82rem;font-weight:600;cursor:pointer;">Opslaan</button>
           <span id="rf-saved" style="display:none;margin-left:10px;font-size:.8rem;color:#2E8B57;font-weight:600;">✓ Opgeslagen!</span>
         </div>
-        <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted);">Reflecties van collega's</div>
+        <div style="font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--muted);">Beoordelingen van collega's</div>
         <div id="reflecties-lijst" style="display:flex;flex-direction:column;gap:10px;"></div>
-      </div>
-    </div>`;
+      </div>`;
     dbody.appendChild(rfDiv);
   }
 }
@@ -3636,102 +3881,213 @@ function renderLL(){
 function openLessonLL(id){showView('lessen');openId=id;renderGrid();}
 
 // ═══════════════════════════════════════════
-// ZELFSCAN
+// TEAMOVERZICHT (coördinator/directie)
 // ═══════════════════════════════════════════
+// Enkel schooljaren tonen waar effectief data voor bestaat, plus altijd het huidige
+// schooljaar (ook als dat nog leeg is) — geen vaste, vaak lege "vorige jaren" meer.
+async function loadBeschikbareSchooljaren(){
+  const huidig = getSchoolJaar();
+  if(!dkToken || !CFG.lijsten.lesgegeven) return [huidig];
+  const data = await dkGet(spUrl(CFG.lijsten.lesgegeven) + '?$expand=fields&$top=2000');
+  const set = new Set([huidig]);
+  if(data && data.value){
+    data.value.forEach(item => { if(item.fields && item.fields.Schooljaar) set.add(item.fields.Schooljaar); });
+  }
+  return [...set].sort().reverse();
+}
+
+async function renderTeamOverzicht(){
+  const cont = document.getElementById('team-content');
+  const sel  = document.getElementById('team-sj-select');
+  const docentSel = document.getElementById('team-docent-select');
+  if(!cont || !sel || !docentSel) return;
+
+  if(!sel.options.length){
+    const jaren = await loadBeschikbareSchooljaren();
+    sel.innerHTML = jaren.map(j => `<option value="${j}">${j}</option>`).join('');
+  }
+  const schoolJaar = sel.value || getSchoolJaar();
+
+  if(!CFG.lijsten.lesgegeven){
+    cont.innerHTML = `<div class="empty"><p>De SharePoint-lijst voor "lesgegeven" is nog niet gekoppeld (CFG.lijsten.lesgegeven is leeg). Vraag de ICT-coördinator dit in te stellen.</p></div>`;
+    return;
+  }
+
+  cont.innerHTML = `<div class="empty"><p>Bezig met laden…</p></div>`;
+  const alleRows = await loadTeamGegevenLessen(schoolJaar);
+
+  // Leerkracht-dropdown vullen op basis van dit schooljaar, met behoud van huidige keuze indien nog geldig
+  const huidigeDocentKeuze = docentSel.value;
+  const naamPerEmail = new Map();
+  alleRows.forEach(r => { if(!naamPerEmail.has(r.email)) naamPerEmail.set(r.email, r.naam); });
+  const docenten = [...naamPerEmail.keys()].sort((a,b) => (naamPerEmail.get(a)||a).localeCompare(naamPerEmail.get(b)||b));
+  docentSel.innerHTML = `<option value="">Alle leerkrachten</option>` + docenten.map(e => `<option value="${e}">${naamPerEmail.get(e) || e}</option>`).join('');
+  docentSel.value = docenten.includes(huidigeDocentKeuze) ? huidigeDocentKeuze : '';
+
+  const rows = docentSel.value ? alleRows.filter(r => r.email === docentSel.value) : alleRows;
+
+  if(!rows.length){
+    cont.innerHTML = `<div class="empty"><p>${docentSel.value ? `Geen lessen gevonden voor ${naamPerEmail.get(docentSel.value) || docentSel.value} in schooljaar ${schoolJaar}.` : `Nog geen lessen gemarkeerd als "gegeven" voor schooljaar ${schoolJaar}.`}</p></div>`;
+    return;
+  }
+
+  // Groepeer per les
+  const perLes = new Map();
+  rows.forEach(r => {
+    if(!perLes.has(r.lesId)) perLes.set(r.lesId, { lesId: r.lesId, lesNaam: r.lesNaam, fase: r.fase, leerlijn: r.leerlijn, docenten: [] });
+    perLes.get(r.lesId).docenten.push({ email: r.email, naam: r.naam, datum: r.datum, bron: r.bron });
+  });
+  const lesArr = [...perLes.values()].sort((a,b) => a.lesNaam.localeCompare(b.lesNaam));
+
+  // Gemiddelde sterrenbeoordeling per les ophalen (uit de lesreflecties)
+  await Promise.all(lesArr.map(async l => {
+    const reflecties = await loadReflecties(l.lesId);
+    const scores = reflecties.map(r => r.beoordeling).filter(b => b > 0);
+    l.gemBeoordeling = scores.length ? (scores.reduce((a,b) => a+b, 0) / scores.length) : null;
+    l.aantalReflecties = scores.length;
+  }));
+
+  const perDocent = new Map();
+  rows.forEach(r => {
+    if(!perDocent.has(r.email)) perDocent.set(r.email, 0);
+    perDocent.set(r.email, perDocent.get(r.email) + 1);
+  });
+
+  cont.innerHTML = `
+    <div style="display:flex;gap:14px;margin-bottom:20px;flex-wrap:wrap;">
+      <div class="ov-card" style="flex:1;min-width:160px;padding:14px 18px;">
+        <div style="font-size:1.6rem;font-weight:800;">${rows.length}</div>
+        <div style="font-size:.78rem;color:var(--muted);">lessen gegeven (${schoolJaar})</div>
+      </div>
+      <div class="ov-card" style="flex:1;min-width:160px;padding:14px 18px;">
+        <div style="font-size:1.6rem;font-weight:800;">${lesArr.length}</div>
+        <div style="font-size:.78rem;color:var(--muted);">verschillende lessen</div>
+      </div>
+      <div class="ov-card" style="flex:1;min-width:160px;padding:14px 18px;">
+        <div style="font-size:1.6rem;font-weight:800;">${perDocent.size}</div>
+        <div style="font-size:.78rem;color:var(--muted);">leerkrachten actief</div>
+      </div>
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:.85rem;">
+      <thead>
+        <tr style="text-align:left;border-bottom:2px solid var(--border);">
+          <th style="padding:8px 10px;">Les</th>
+          <th style="padding:8px 10px;">Leerlijn</th>
+          <th style="padding:8px 10px;">Fase</th>
+          <th style="padding:8px 10px;">Beoordeling</th>
+          <th style="padding:8px 10px;">Gegeven door</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${lesArr.map(l => `<tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px;font-weight:600;">${l.lesNaam}</td>
+          <td style="padding:8px 10px;"><span style="font-size:10px;font-weight:700;color:${LL_COLS[l.leerlijn]||'var(--muted)'}">${LL_LABELS[l.leerlijn]||l.leerlijn}</span></td>
+          <td style="padding:8px 10px;">${FL[l.fase]||l.fase}</td>
+          <td style="padding:8px 10px;white-space:nowrap;">${l.gemBeoordeling ? `⭐ ${l.gemBeoordeling.toFixed(1)} <span style="color:var(--muted);font-size:.75rem;">(${l.aantalReflecties})</span>` : `<span style="color:var(--muted);font-size:.78rem;">—</span>`}</td>
+          <td style="padding:8px 10px;">${l.docenten.map(d => `<span style="display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:2px 9px;margin:1px;font-size:.76rem;" title="${d.email} · ${new Date(d.datum).toLocaleDateString('nl-BE')} · ${d.bron}">${d.naam || d.email}</span>`).join('')}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+}
+
+
 // ═══════════════════════════════════════════
 // ZELFSCAN — FASE-BEWUST
 // ═══════════════════════════════════════════
 const ZSQ = {
-  '1': { // Kleuters + L1
+  '1': {
     ict: [
-      'Ik laat leerlingen kennismaken met digitale toestellen (tablet, digibord, computer) op een speelse manier.',
-      'Ik bespreek hoe je een tablet of computer correct vasthoudt en voorzichtig behandelt.',
-      'Ik gebruik het digibord actief als interactief leermiddel (niet enkel als scherm).',
-      'Ik laat leerlingen eenvoudige handelingen uitvoeren: klikken, slepen, scherm aanraken.',
-      'Ik spreek over het verschil tussen een scherm en een boek als informatiebron.',
+      { tekst: 'Ik laat leerlingen kennismaken met digitale toestellen (tablet, digibord, computer) op een speelse manier.', voorbeeld: 'Bv. samen een prentenboek-app openen op de tablet, of om beurt iets aanwijzen op het digibord.', doel: 'Ik leer spelenderwijs omgaan met een tablet, computer of laptop en kan de basistermen benoemen.' },
+      { tekst: 'Ik bespreek hoe je een tablet of computer correct vasthoudt en voorzichtig behandelt.', voorbeeld: 'Bv. de tablet met twee handen dragen en op een zachte ondergrond leggen, niet op de rand van de tafel.' },
+      { tekst: 'Ik gebruik het digibord actief als interactief leermiddel (niet enkel als scherm).', voorbeeld: 'Bv. een kleuter tijdens een letter- of telsessie zelf iets laten aanraken of verslepen op het digibord.' },
+      { tekst: 'Ik laat leerlingen eenvoudige handelingen uitvoeren: klikken, slepen, scherm aanraken.', voorbeeld: 'Bv. een puzzelstukje met de vinger naar de juiste plek verslepen op de tablet.', doel: 'Ik kan eenvoudige handelingen uitvoeren op een touchscreen: tikken, slepen en selecteren.' },
+      { tekst: 'Ik spreek over het verschil tussen een scherm en een boek als informatiebron.', voorbeeld: 'Bv. samen bespreken: \'Waar vinden we een verhaal over dieren — in dit prentenboek of op de tablet?\'' },
     ],
     media: [
-      'Ik bespreek met leerlingen welke schermen zij kennen en waarvoor ze dienen.',
-      'Ik leer leerlingen het onderscheid tussen "echt" (foto, reportage) en "verzonnen" (tekenfilm, sprookje).',
-      'Ik bespreek wanneer en hoelang schermen zinvol zijn (bewust gebruik).',
-      'Ik leer leerlingen bij twijfel over een beeld of verhaal hulp te vragen aan een volwassene.',
-      'Ik introduceer de begrippen "echt" en "verzonnen" als denkkaders bij mediabeelden.',
+      { tekst: 'Ik bespreek met leerlingen welke schermen zij kennen en waarvoor ze dienen.', voorbeeld: 'Bv. samen opsommen: tv, tablet, smartphone van mama/papa, digibord.', doel: 'Ik maak kennis met verschillende vormen van mediaboodschappen (tv, tablet, boek, radio).' },
+      { tekst: 'Ik leer leerlingen het onderscheid tussen “echt” (foto, reportage) en “verzonnen” (tekenfilm, sprookje).', voorbeeld: 'Bv. een foto van een echte hond naast een tekenfilmfiguur leggen: wat is echt, wat is verzonnen?' },
+      { tekst: 'Ik bespreek wanneer en hoelang schermen zinvol zijn (bewust gebruik).', voorbeeld: 'Bv. samen een vast \'schermmomentje\' plannen: tv kijken na het eten, niet tijdens het eten.', doel: 'Ik denk na over hoe en hoelang ik digitale media gebruik in mijn dagelijks leven (schermtijd).' },
+      { tekst: 'Ik leer leerlingen bij twijfel over een beeld of verhaal hulp te vragen aan een volwassene.', voorbeeld: 'Bv. \'Als je een eng filmpje ziet, vertel je dat meteen aan de juf, mama of papa.\'' },
+      { tekst: 'Ik introduceer de begrippen “echt” en “verzonnen” als denkkaders bij mediabeelden.', voorbeeld: 'Bv. bij elk filmpje samen de vraag stellen: is dit echt gebeurd of verzonnen?' },
     ],
     comp: [
-      'Ik laat leerlingen eenvoudige stappenplannen uitvoeren (bv. robot-spel, dansprogramma).',
-      'Ik gebruik unplugged activiteiten om algoritmisch denken te introduceren (bv. mens-als-robot).',
-      'Ik laat leerlingen patronen herkennen en verder zetten (kleur, vorm, geluid).',
-      'Ik laat leerlingen instructies geven aan een medeleerling (puzzel, parcours).',
-      'Ik introduceer het begrip "volgorde" als onderdeel van instructies.',
+      { tekst: 'Ik laat leerlingen eenvoudige stappenplannen uitvoeren (bv. robot-spel, dansprogramma).', voorbeeld: 'Bv. een kleuter als \'robot\' laten stappen volgens de opdrachten van een klasgenoot: \'drie stappen vooruit, dan draaien\'.', doel: 'Ik kan prenten en foto\'s in een logische volgorde plaatsen en een eenvoudige reeks stappen uitvoeren (sequentie/algoritme).' },
+      { tekst: 'Ik gebruik unplugged activiteiten om algoritmisch denken te introduceren (bv. mens-als-robot).', voorbeeld: 'Unplugged = zonder toestel. Bv. een kleuter speelt \'robot\' en voert enkel uit wat de andere kleuters hardop zeggen.' },
+      { tekst: 'Ik laat leerlingen patronen herkennen en verder zetten (kleur, vorm, geluid).', voorbeeld: 'Bv. een kralenketting verder rijgen volgens het patroon rood-geel-rood-geel-…' },
+      { tekst: 'Ik laat leerlingen instructies geven aan een medeleerling (puzzel, parcours).', voorbeeld: 'Bv. een klasgenoot met woorden als \'links\', \'rechtdoor\', \'stop\' door een hindernisparcours begeleiden.', doel: 'Ik kan prenten en foto\'s in een logische volgorde plaatsen en een eenvoudige reeks stappen uitvoeren (sequentie/algoritme). (zelfde leerlijndoel als stelling 1 — mogelijke overlap)' },
+      { tekst: 'Ik introduceer het begrip “volgorde” als onderdeel van instructies.', voorbeeld: 'Bv. de stappen van \'handen wassen\' in de juiste volgorde leggen met prentkaartjes.', doel: 'Ik kan prenten en foto\'s in een logische volgorde plaatsen en een eenvoudige reeks stappen uitvoeren (sequentie/algoritme). (zelfde leerlijndoel als stelling 1 en 4 — mogelijke overlap/dubbel)' },
     ],
   },
-  '2': { // L2 + L3
+  '2': {
     ict: [
-      'Ik leer leerlingen correct typen: letters, spatie, backspace en enter.',
-      'Ik bespreek hoe je bestanden bewaart, hernoemt en terugvindt.',
-      'Ik oefen met leerlingen hoe ze veilig inloggen en uitloggen op de schoolomgeving.',
-      'Ik laat leerlingen eenvoudige digitale tekeningen of documenten maken.',
-      'Ik leer leerlingen basishandelingen: kopiëren, knippen, plakken (Ctrl+C, X, V).',
+      { tekst: 'Ik leer leerlingen correct typen: letters, spatie, backspace en enter.', voorbeeld: 'Bv. de eigen naam en \'mijn hobby is …\' overtypen in een leeg tekstdocument.', doel: 'Ik kan gericht toetsen aantikken op een toetsenbord.' },
+      { tekst: 'Ik bespreek hoe je bestanden bewaart, hernoemt en terugvindt.', voorbeeld: 'Bv. een tekening opslaan als \'jan_huis.png\' en ze een week later zelf terugvinden.', doel: 'Ik ken en gebruik het begrip \'bestand\'.' },
+      { tekst: 'Ik oefen met leerlingen hoe ze veilig inloggen en uitloggen op de schoolomgeving.', voorbeeld: 'Bv. samen inloggen op Bingel of Smartschool met de eigen gebruikersnaam, en na de les netjes uitloggen.' },
+      { tekst: 'Ik laat leerlingen eenvoudige digitale tekeningen of documenten maken.', voorbeeld: 'Bv. een verjaardagskaart tekenen in een eenvoudige tekenapp.', doel: 'Ik gebruik een aangereikte tool om eigen ideeën creatief vorm te geven.' },
+      { tekst: 'Ik leer leerlingen basishandelingen: kopiëren, knippen, plakken (Ctrl+C, X, V).', voorbeeld: 'Bv. een zin uit een tekst kopiëren en in een eigen document plakken.' },
     ],
     media: [
-      'Ik bespreek met leerlingen wat reclame is en hoe ze het herkennen.',
-      'Ik leer leerlingen controlevragen stellen bij informatie die ze online vinden.',
-      'Ik praat over toestemming vragen voor foto\'s en het delen van beelden.',
-      'Ik bespreek cyberpesten: wat het is, hoe je het herkent en wat je doet.',
-      'Ik leer leerlingen het verschil kennen tussen openbare en privé-informatie.',
+      { tekst: 'Ik bespreek met leerlingen wat reclame is en hoe ze het herkennen.', voorbeeld: 'Bv. samen een YouTube-filmpje bekijken en aanwijzen waar de reclame begint en eindigt.' },
+      { tekst: 'Ik leer leerlingen controlevragen stellen bij informatie die ze online vinden.', voorbeeld: 'Controlevraag: bv. \'Is deze foto echt?\' of \'Klopt dit wel, of lijkt het te mooi om waar te zijn?\'', doel: 'Ik weet dat informatie online niet altijd betrouwbaar is.' },
+      { tekst: 'Ik praat over toestemming vragen voor foto\'s en het delen van beelden.', voorbeeld: 'Bv. eerst aan een klasgenoot vragen: \'Mag ik deze foto van jou op het klasscherm tonen?\'' },
+      { tekst: 'Ik bespreek cyberpesten: wat het is, hoe je het herkent en wat je doet.', voorbeeld: 'Bv. een voorbeeldsituatie bespreken: iemand krijgt gemene berichtjes in een klasgroepschat — wat doe je?' },
+      { tekst: 'Ik leer leerlingen het verschil kennen tussen openbare en privé-informatie.', voorbeeld: 'Bv. samen sorteren: naam en lievelingskleur (mag openbaar), adres en telefoonnummer (blijft privé).', doel: 'Ik ben waakzaam bij het doorgeven van persoonlijke gegevens.' },
     ],
     comp: [
-      'Ik laat leerlingen eenvoudige algoritmen schrijven voor alledaagse taken.',
-      'Ik bespreek "als … dan …"-redenering via eenvoudige situaties of spelen.',
-      'Ik laat leerlingen fouten zoeken en verbeteren in een reeks instructies (debuggen).',
-      'Ik gebruik unplugged activiteiten voor decompositie (grote taak opdelen).',
-      'Ik laat leerlingen patronen herkennen en toepassen in een eenvoudige context.',
+      { tekst: 'Ik laat leerlingen eenvoudige algoritmen schrijven voor alledaagse taken.', voorbeeld: 'Bv. samen de stappen opschrijven om een boterham met confituur te smeren.', doel: 'Ik voer een opdracht stap voor stap uit (algoritme).' },
+      { tekst: 'Ik bespreek “als … dan …”-redenering via eenvoudige situaties of spelen.', voorbeeld: 'Bv. een spelregel invoeren: \'ALS het regent, DAN spelen we binnen.\'' },
+      { tekst: 'Ik laat leerlingen fouten zoeken en verbeteren in een reeks instructies (debuggen).', voorbeeld: 'Bv. een stappenplan met een fout erin (zoals \'schoenen aan\' vóór \'sokken aan\') laten uitvoeren en samen de fout ontdekken.' },
+      { tekst: 'Ik gebruik unplugged activiteiten voor decompositie (grote taak opdelen).', voorbeeld: 'Unplugged = zonder toestel. Bv. de taak \'de klas opruimen\' samen opdelen in kleinere taakjes per hoek.', doel: 'Ik deel een eenvoudige opdracht op in deelopdrachten (decompositie).' },
+      { tekst: 'Ik laat leerlingen patronen herkennen en toepassen in een eenvoudige context.', voorbeeld: 'Bv. een reeks kralen of blokjes verder afwerken volgens een gegeven patroon.', doel: 'Ik zet een patroon vanuit een reeks verder.' },
     ],
   },
-  '3': { // L4 + L5
+  '3': {
     ict: [
-      'Ik leer leerlingen doelgericht zoeken op internet met efficiënte zoektermen.',
-      'Ik laat leerlingen zelfstandig een digitale presentatie of document maken.',
-      'Ik bespreek hoe je e-mail schrijft en antwoordt (structuur, toon, bijlage).',
-      'Ik laat leerlingen samenwerken in een gedeeld online document.',
-      'Ik leer leerlingen bronnen beoordelen op betrouwbaarheid en die correct vermelden.',
+      { tekst: 'Ik leer leerlingen doelgericht zoeken op internet met efficiënte zoektermen.', voorbeeld: 'Bv. niet zoeken op \'dieren\' maar op \'ijsbeer voedsel Noordpool\'.', doel: 'Ik stel een zoekvraag en kies een zoektool om informatie te vinden.' },
+      { tekst: 'Ik laat leerlingen zelfstandig een digitale presentatie of document maken.', voorbeeld: 'Bv. een korte presentatie van 3 dia\'s maken over een hobby.' },
+      { tekst: 'Ik bespreek hoe je e-mail schrijft en antwoordt (structuur, toon, bijlage).', voorbeeld: 'Bv. een kort mailtje aan de leerkracht sturen (aanhef – vraag – groet), of via de klaschat op Teams een nette vraag stellen volgens de klasafspraken.' },
+      { tekst: 'Ik laat leerlingen samenwerken in een gedeeld online document.', voorbeeld: 'Bv. met 3 klasgenoten tegelijk in eenzelfde Google Doc een groepsverslag aanvullen.' },
+      { tekst: 'Ik leer leerlingen bronnen beoordelen op betrouwbaarheid en die correct vermelden.', voorbeeld: 'Bv. bij een werkstuk noteren \'Bron: Wikipedia, geraadpleegd op 12/03\' en checken of een tweede bron hetzelfde zegt.' },
     ],
     media: [
-      'Ik leer leerlingen nepnieuws herkennen via een fact-checklist.',
-      'Ik bespreek privacy en persoonsgegevens: wat is privé, wat mag je delen?',
-      'Ik bespreek beeldmanipulatie en hoe je bewerkte foto\'s herkent.',
-      'Ik praat over auteursrecht en Creative Commons bij het gebruik van online materiaal.',
-      'Ik bespreek hoe online communicatie tot misverstanden kan leiden (toon, emoji, context).',
+      { tekst: 'Ik leer leerlingen nepnieuws herkennen via een fact-checklist.', voorbeeld: 'Bv. een overduidelijk nepbericht (zoals \'chocolade valt uit de lucht\') samen toetsen: wie schreef dit, staat het ook elders?' },
+      { tekst: 'Ik bespreek privacy en persoonsgegevens: wat is privé, wat mag je delen?', voorbeeld: 'Bv. bespreken waarom je je adres of school niet in een openbaar spelprofiel zet.', doel: 'Ik ken de begrippen online privacy, persoonlijke gegevens en account.' },
+      { tekst: 'Ik bespreek beeldmanipulatie en hoe je bewerkte foto\'s herkent.', voorbeeld: 'Bv. een origineel en een bewerkt (uitgerekt of opgehelderd) portret naast elkaar leggen en de verschillen aanwijzen.' },
+      { tekst: 'Ik praat over auteursrecht en Creative Commons bij het gebruik van online materiaal.', voorbeeld: 'Creative Commons: voeg bij een gebruikte afbeelding steeds een bronvermelding + licentie toe, bv. \'Foto: Pixabay, CC0 — vrij te gebruiken\'.' },
+      { tekst: 'Ik bespreek hoe online communicatie tot misverstanden kan leiden (toon, emoji, context).', voorbeeld: 'Bv. het bericht \'Doe maar 😂\' op twee manieren lezen — als grapje of als spot — en het verschil bespreken.', doel: 'Ik respecteer regels en omgangsvormen bij digitale communicatie.' },
     ],
     comp: [
-      'Ik laat leerlingen programmeren in Scratch (sprites, beweging, dialogen).',
-      'Ik gebruik decompositie als werkstrategie bij complexere opdrachten.',
-      'Ik leer leerlingen herhaling en lussen toepassen in een programma.',
-      'Ik bespreek variabelen als "geheugen" van een programma (score, levens).',
-      'Ik gebruik binaire code of netwerksimulaties als unplugged activiteiten.',
+      { tekst: 'Ik laat leerlingen programmeren in Scratch (sprites, beweging, dialogen).', voorbeeld: 'Bv. een sprite laten bewegen en van kleur laten veranderen met de pijltjestoetsen.' },
+      { tekst: 'Ik gebruik decompositie als werkstrategie bij complexere opdrachten.', voorbeeld: 'Bv. het schoolfeest organiseren opdelen in deeltaken: versiering, muziek, drank, affiches.', doel: 'Ik deel een proces op in stappen en deelstappen (decompositie).' },
+      { tekst: 'Ik leer leerlingen herhaling en lussen toepassen in een programma.', voorbeeld: 'Bv. in Scratch een sprite 4 keer \'stap – draai\' laten herhalen om een vierkant te tekenen.' },
+      { tekst: 'Ik bespreek variabelen als “geheugen” van een programma (score, levens).', voorbeeld: 'Bv. in een Scratch-spel een variabele \'score\' aanmaken die telkens +1 doet bij een treffer.' },
+      { tekst: 'Ik gebruik binaire code of netwerksimulaties als unplugged activiteiten.', voorbeeld: 'Bv. een menselijke \'kettingreactie\' naspelen waarbij elke leerling een seintje doorgeeft aan de volgende — zoals data van router naar router reist.' },
+      { tekst: 'Ik werk, onder begeleiding, een eenvoudige zoekstrategie uit vanuit de principes van computationeel denken.', voorbeeld: 'Bv. een onderzoeksvraag over dolfijnen opdelen in 3 deelvragen en voor elke deelvraag de beste zoekterm kiezen (zonder AI-hulpmiddel).', doel: 'NIEUW — Ik werk, onder begeleiding, een eenvoudige zoekstrategie uit vanuit de principes van computationeel denken. — dekt MD L4-8.2.5, dat tot nu toe nergens in de leerlijn gekoppeld was.' },
     ],
   },
-  '4': { // L6
+  '4': {
     ict: [
-      'Ik leer leerlingen meerdere spreadsheetfuncties (GEMIDDELDE, MIN, MAX, ALS) toepassen.',
-      'Ik bespreek phishing, spoofing en social engineering als online veiligheidsrisico\'s.',
-      'Ik laat leerlingen bronnen citeren en plagiaat vermijden in hun opdrachten.',
-      'Ik bespreek cloudtools voor samenwerking en de bijbehorende privacyvragen.',
-      'Ik leer leerlingen de juiste digitale tool kiezen afhankelijk van de taak.',
+      { tekst: 'Ik leer leerlingen meerdere spreadsheetfuncties (GEMIDDELDE, MIN, MAX, ALS) toepassen.', voorbeeld: 'Bv. in een spreadsheet met testresultaten het klasgemiddelde berekenen met =GEMIDDELDE(B2:B25).' },
+      { tekst: 'Ik bespreek phishing, spoofing en social engineering als online veiligheidsrisico\'s.', voorbeeld: 'Spoofing (= nabootsen): bv. een e-mail die eruitziet alsof ze van de directeur komt, maar dat niet is. Social engineering: bv. een vals profiel dat vertrouwen wint om informatie los te krijgen.' },
+      { tekst: 'Ik laat leerlingen bronnen citeren en plagiaat vermijden in hun opdrachten.', voorbeeld: 'Bv. een zin uit een website niet zomaar overnemen, maar herformuleren en de bron eronder vermelden.' },
+      { tekst: 'Ik bespreek cloudtools voor samenwerking en de bijbehorende privacyvragen.', voorbeeld: 'Bv. samen een groepswerkstuk maken in OneDrive en bespreken wie het mag bewerken versus enkel bekijken.' },
+      { tekst: 'Ik leer leerlingen de juiste digitale tool kiezen afhankelijk van de taak.', voorbeeld: 'Bv. voor een spreekbeurt kiezen tussen een spreadsheet (cijfers), een presentatie (uitleg) of een filmpje (demonstratie).', doel: 'Ik reflecteer op de meerwaarde van het gebruik van digitale toepassingen.' },
+      { tekst: 'Ik pas eenvoudige systeeminstellingen aan (taal, wifi, weergave).', voorbeeld: 'Bv. zelf de schermtaal van een tablet wijzigen naar het Engels en weer terug, of het wifi-netwerk aan-/uitzetten.', doel: 'NIEUW — Ik pas eenvoudige systeeminstellingen aan (taal, wifi, weergave). — dekt MD L6-8.2.4. Deze koppeling stond voorheen (foutief) bij het leerlijndoel over \'reflecteren op meerwaarde\'; dat is nu hersteld.' },
+      { tekst: 'Ik ken verschillende digitale tools om gepast te communiceren (bv. e-mail, chat, videogesprek).', voorbeeld: 'Bv. bepalen: voor een korte vraag gebruik je de klaschat op Teams, voor een officiële vraag aan de directie schrijf je een e-mail.', doel: 'NIEUW — Ik ken verschillende digitale tools om gepast te communiceren (bv. e-mail, chat, videogesprek). — dekt MD L6-8.4.1 (domein \'Digitale creatie\'), dat tot nu toe nergens in de leerlijn gekoppeld was.' },
     ],
     media: [
-      'Ik bespreek filterbubbels en hoe aanbevelingsalgoritmen bepalen wat leerlingen zien.',
-      'Ik ga in op deepfakes en geavanceerde digitale misleiding.',
-      'Ik bespreek mediabias: hoe brengen verschillende media hetzelfde feit?',
-      'Ik laat leerlingen reflecteren op hun schermtijd en digitaal welzijn.',
-      'Ik bespreek digitale reputatie en de langetermijn-impact van online gedrag.',
+      { tekst: 'Ik bespreek filterbubbels en hoe aanbevelingsalgoritmen bepalen wat leerlingen zien.', voorbeeld: 'Bv. twee leerlingen zoeken hetzelfde op YouTube op en vergelijken waarom ze andere aanbevolen filmpjes te zien krijgen.' },
+      { tekst: 'Ik ga in op deepfakes en geavanceerde digitale misleiding.', voorbeeld: 'Bv. een bekend voorbeeld van een nagemaakte video tonen (met uitleg) en bespreken hoe je twijfel kan herkennen.' },
+      { tekst: 'Ik bespreek mediabias: hoe brengen verschillende media hetzelfde feit?', voorbeeld: 'Mediabias betekent dat media hetzelfde nieuwsfeit anders kunnen brengen. Bv. twee krantenkoppen over dezelfde gebeurtenis naast elkaar leggen en het verschil in toon bespreken.' },
+      { tekst: 'Ik laat leerlingen reflecteren op hun schermtijd en digitaal welzijn.', voorbeeld: 'Bv. een week lang de eigen schermtijd bijhouden en bespreken hoe dat voelde.', doel: 'Ik verwoord de fysieke en mentale impact van digitale media op mijn gezondheid.' },
+      { tekst: 'Ik bespreek digitale reputatie en de langetermijn-impact van online gedrag.', voorbeeld: 'Bv. bespreken: een grappige foto die je nu online zet, kan een werkgever over 10 jaar nog terugvinden.' },
     ],
     comp: [
-      'Ik laat leerlingen een volledig mini-project programmeren in Scratch (spel, verhaal).',
-      'Ik bespreek abstractie: herhalende code vervangen door herbruikbare blokken.',
-      'Ik laat leerlingen nadenken over hoe AI leert van data (machine learning).',
-      'Ik bespreek datastructuren: variabelen, lijsten en tabellen.',
-      'Ik laat leerlingen ethische dilemma\'s rond technologie bespreken en beargumenteren.',
+      { tekst: 'Ik laat leerlingen een volledig mini-project programmeren in Scratch (spel, verhaal).', voorbeeld: 'Bv. een eigen kort labyrint-spel programmeren met een startpunt, hindernissen en een \'gewonnen\'-scherm.', doel: 'Ik ontwerp, test en verbeter een algoritme met sequentie, herhaling en keuze.' },
+      { tekst: 'Ik bespreek abstractie: herhalende code vervangen door herbruikbare blokken.', voorbeeld: 'Bv. in Scratch een blok \'spring\' maken dat je telkens hergebruikt in plaats van steeds dezelfde code te herhalen.', doel: 'Ik zet een concreet probleem om in een visuele weergave (abstractie).' },
+      { tekst: 'Ik laat leerlingen nadenken over hoe AI leert van data (machine learning).', voorbeeld: 'Bv. uitleggen hoe een foto-app leert een kat te herkennen na duizenden voorbeeldfoto\'s te \'zien\'.' },
+      { tekst: 'Ik bespreek datastructuren: variabelen, lijsten en tabellen.', voorbeeld: 'Bv. een lijst \'klasgenoten\' aanmaken in Scratch en er namen aan toevoegen, of een score bijhouden in een variabele.' },
+      { tekst: 'Ik laat leerlingen ethische dilemma\'s rond technologie bespreken en beargumenteren.', voorbeeld: 'Bv. de vraag bespreken: \'Mag een zelfrijdende auto zelf beslissen wie hij ontwijkt bij een ongeval?\'' },
     ],
   },
 };
@@ -3739,24 +4095,24 @@ const ZSQ = {
 // Fase-specifieke tips per leerlijn
 const ZS_TIPS = {
   '1': {
-    ict: 'Focus op het veilig en voorzichtig omgaan met toestellen. Lessen hoeven niet lang te zijn: korte, speelse kennismaking werkt het best voor kleuters en L1.',
-    media: 'Verken het medialandschap van de leerling via kringgesprekken. Vermijd schermtijd-schuldgevoel — focus op bewustzijn en nieuwsgierigheid.',
-    comp: 'Gebruik unplugged activiteiten: robotspelen, dans-codes, patronen. Geen scherm nodig. De beweging en het spel zijn het leren.',
+    ict: { tekst: 'Focus op het veilig en voorzichtig omgaan met toestellen. Lessen hoeven niet lang te zijn: korte, speelse kennismaking werkt het best voor kleuters en L1.', voorbeeld: 'Bv. een korte \'toestel-regel\' afspreken: eerst handen wassen, dan pas de tablet vastnemen.' },
+    media: { tekst: 'Verken het medialandschap van de leerling via kringgesprekken. Vermijd schermtijd-schuldgevoel — focus op bewustzijn en nieuwsgierigheid.', voorbeeld: 'Bv. een kringgesprek starten met: \'Welk filmpje of programma zag je gisteren thuis?\'' },
+    comp: { tekst: 'Gebruik unplugged activiteiten: robotspelen, dans-codes, patronen. Geen scherm nodig. De beweging en het spel zijn het leren.', voorbeeld: 'Bv. een eenvoudige \'dans-code\' met 3 bewegingen die de klas in de juiste volgorde moet nadoen.' },
   },
   '2': {
-    ict: 'Bouw routines op: altijd opslaan, altijd uitloggen. Herhaling en consequentie zijn belangrijker dan snelheid.',
-    media: 'Bespreek concrete situaties uit de belevingswereld van L2–L3. Reclame voor speelgoed, foto\'s op de klasgroep — herkenbare voorbeelden landen het best.',
-    comp: 'Combineer unplugged (boterham-algoritme, robotspel) met eenvoudige digitale tools (Scratch Jr., Bee-Bot). Laat leerlingen fouten maken en herstellen.',
+    ict: { tekst: 'Bouw routines op: altijd opslaan, altijd uitloggen. Herhaling en consequentie zijn belangrijker dan snelheid.', voorbeeld: 'Bv. aan het einde van elke computerles hetzelfde \'afsluitritueel\' doorlopen: opslaan → uitloggen → scherm dicht.' },
+    media: { tekst: 'Bespreek concrete situaties uit de belevingswereld van L2-L3. Reclame voor speelgoed, foto\'s op de klasgroep — herkenbare voorbeelden landen het best.', voorbeeld: 'Bv. een echte speelgoedreclame samen bekijken en bespreken: wat proberen ze jou te laten denken of voelen?' },
+    comp: { tekst: 'Combineer unplugged (boterham-algoritme, robotspel) met eenvoudige digitale tools (Scratch Jr., Bee-Bot). Laat leerlingen fouten maken en herstellen.', voorbeeld: 'Bv. eerst een Bee-Bot-parcours op papier uittekenen, dan pas de echte robot programmeren.' },
   },
   '3': {
-    ict: 'Embed ICT in andere vakken: zoek bronnen bij WO, maak een presentatie voor een boekbespreking. ICT als middel, niet als doel.',
-    media: 'Gebruik actuele voorbeelden (met de nodige omzichtigheid). Leerlingen van L4–L5 zijn actief op sociale media — sluit daarbij aan.',
-    comp: 'Scratch projecten worden rijker als leerlingen eigen ideeën uitwerken. Geef kader maar laat maximale creatieve vrijheid. Bespreek code van medeleerlingen.',
+    ict: { tekst: 'Embed ICT in andere vakken: zoek bronnen bij WO, maak een presentatie voor een boekbespreking. ICT als middel, niet als doel.', voorbeeld: 'Bv. bij wereldoriëntatie een korte presentatie maken over een land in plaats van een geschreven werkstuk.' },
+    media: { tekst: 'Gebruik actuele voorbeelden (met de nodige omzichtigheid). Leerlingen van L4-L5 zijn actief op sociale media — sluit daarbij aan.', voorbeeld: 'Bv. een herkenbare TikTok- of YouTube-trend bespreken die de klas zelf kent.' },
+    comp: { tekst: 'Scratch projecten worden rijker als leerlingen eigen ideeën uitwerken. Geef kader maar laat maximale creatieve vrijheid. Bespreek code van medeleerlingen.', voorbeeld: 'Bv. leerlingen laten kiezen tussen een eigen spel, verhaal of animatie als eindproject.' },
   },
   '4': {
-    ict: 'L6 kan zelfstandig complexe digitale taken uitvoeren. Leg de lat hoog: professionele documentopmaak, bronvermelding, spreadsheetanalyse.',
-    media: 'Debat en opiniestuk zijn krachtige werkvormen. Leerlingen van L6 kunnen genuanceerd argumenteren als je hen de kans geeft.',
-    comp: 'Koppel aan beroepen en toekomst: softwareontwikkelaar, data-analist, AI-ethicus. Maak de abstractie tastbaar via echte toepassingen.',
+    ict: { tekst: 'L6 kan zelfstandig complexe digitale taken uitvoeren. Leg de lat hoog: professionele documentopmaak, bronvermelding, spreadsheetanalyse.', voorbeeld: 'Bv. bij een klasenquête de resultaten in een spreadsheet verwerken en met =GEMIDDELDE() of =MAX() een conclusie trekken.' },
+    media: { tekst: 'Debat en opiniestuk zijn krachtige werkvormen. Leerlingen van L6 kunnen genuanceerd argumenteren als je hen de kans geeft.', voorbeeld: 'Bv. een klasdebat organiseren over de stelling \'Sociale media zouden verboden moeten worden onder de 16 jaar\'.' },
+    comp: { tekst: 'Koppel aan beroepen en toekomst: software-ontwikkelaar, data-analist, AI-ethicus. Maak de abstractie tastbaar via echte toepassingen.', voorbeeld: 'Bv. een kort filmpje tonen over het beroep van data-analist of AI-ethicus en bespreken wat die persoon precies doet.' },
   },
 };
 
@@ -3791,18 +4147,23 @@ function renderZSContent(fase) {
   };
   const SEC = { ict: 'ICT-basisvaardigheden', media: 'Mediawijsheid', comp: 'Computationeel denken' };
   const OPTS = ['Nog niet', 'Soms', 'Regelmatig', 'Altijd'];
+  const totaalVragen = questions.ict.length + questions.media.length + questions.comp.length;
 
   let html = `<div style="background:var(--ict-l);border-radius:var(--radius-sm);padding:9px 13px;font-size:12px;color:var(--ict-d);margin-bottom:1rem;font-weight:600">
-    📋 Zelfscan voor <strong>${FASE_LABELS[fase]}</strong> — ${questions.ict.length * 3} vragen over de 3 leerlijnen
+    📋 Zelfscan voor <strong>${FASE_LABELS[fase]}</strong> — ${totaalVragen} vragen over de 3 leerlijnen
   </div>`;
 
   ['ict', 'comp', 'media'].forEach(ll => {
+    const tip = (ZS_TIPS[fase] || {})[ll];
     html += `<div class="zs-sec">
       <div class="zs-sec-t ${ll}">${SEC[ll]}</div>
-      ${questions[ll].map((v, i) => {
+      ${tip ? `<div class="zs-tipbox"><b>💡 Tip</b> — ${tip.tekst}${tip.voorbeeld ? `<div class="zs-tip-vb">${tip.voorbeeld}</div>` : ''}</div>` : ''}
+      ${questions[ll].map((q, i) => {
         const qi = `${fase}_${ll}_${i}`;
         return `<div class="zsq">
-          <div class="zsq-t">${v}</div>
+          <div class="zsq-t">${q.tekst}</div>
+          ${q.voorbeeld ? `<div class="zsq-vb">${q.voorbeeld}</div>` : ''}
+          ${q.doel ? `<div class="zsq-doel">🎯 Leerlijndoel: ${q.doel}</div>` : ''}
           <div class="zsopts">${OPTS.map((o, j) => `<button class="zsopt" data-qi="${qi}" data-v="${j}" data-ll="${ll}" onclick="zsSelect(this)">${o}</button>`).join('')}</div>
         </div>`;
       }).join('')}
@@ -4345,7 +4706,7 @@ function doZS(fase) {
           const clr = score===0?'#c0392b':score===1?'#d67b00':score===2?'#1a88c8':'#1a6e52';
           return `<tr>
             <td><span class="tag ${ll}" style="font-size:9px">${ll.toUpperCase()}</span></td>
-            <td style="font-size:11px;line-height:1.4">${v}</td>
+            <td style="font-size:11px;line-height:1.4">${v.tekst}</td>
             <td style="font-weight:700;color:${clr};font-size:11px;white-space:nowrap">${SL[score]}</td>
           </tr>`;
         }).join('')
@@ -4845,7 +5206,9 @@ function renderJPGrid() {
                 <div style="display:flex;align-items:center;gap:5px;margin-bottom:2px">
                   <span style="width:8px;height:8px;border-radius:50%;background:${LL_COLS[l.ll]};flex-shrink:0"></span>
                   <span class="jp-pick-title">${l.titel}</span>
+                  ${lesBeoordelingen.get(l.id) ? `<span class="beoordeling-badge" title="${lesBeoordelingen.get(l.id).aantal} beoordeling${lesBeoordelingen.get(l.id).aantal>1?'en':''}">⭐ ${lesBeoordelingen.get(l.id).gemiddelde.toFixed(1)}</span>` : ''}
                   ${l.unplugged ? '<span class="up-badge" style="font-size:9px;padding:1px 5px">✂ unplugged</span>' : ''}
+                  ${lesGegevenInfo(l.id).vorigJaar && !lesGegevenInfo(l.id).ditJaar ? '<span class="gegeven-badge gegeven-vorig" style="font-size:9px">⚠ vorig jaar gegeven</span>' : ''}
                 </div>
                 <div class="jp-pick-meta">
                   <span style="font-size:10px;font-weight:600;color:${LL_COLS[l.ll]}">${LL_LABELS[l.ll]}</span>
@@ -4855,6 +5218,10 @@ function renderJPGrid() {
                   <span>Fase ${l.f}</span>
                 </div>
                 <div class="jp-pick-actions">
+                  <label class="jp-afgerond" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:${lesGegevenInfo(l.id).ditJaar?'#1a7a42':'var(--muted)'};cursor:pointer;margin-right:6px">
+                    <input type="checkbox" ${lesGegevenInfo(l.id).ditJaar?'checked':''} onchange="toggleLesGegevenJP(${l.id})" style="width:13px;height:13px;cursor:pointer">
+                    Gegeven
+                  </label>
                   <button class="jp-btn-sm" onclick="openLessonFromJP(${l.id})">↗ Bekijken</button>
                   <button class="jp-btn-sm remove" onclick="removeFromJP(${m.idx},${l.id})">✕ Verwijder</button>
                 </div>
@@ -5223,13 +5590,13 @@ async function loadReflectiesTab(lesId) {
 
   const reflecties = await loadReflecties(lesId);
   if(!reflecties.length) {
-    lijst.innerHTML = '<div style="font-size:.8rem;color:var(--muted);text-align:center;padding:20px;">Nog geen reflecties voor deze les. Wees de eerste!</div>';
+    lijst.innerHTML = '<div style="font-size:.8rem;color:var(--muted);text-align:center;padding:20px;">Nog geen beoordelingen voor deze les. Wees de eerste!</div>';
     return;
   }
 
   lijst.innerHTML = reflecties.map(r => {
     const sterren = '★'.repeat(r.beoordeling || 0) + '☆'.repeat(5 - (r.beoordeling || 0));
-    const naam = r.isOwn ? 'Jouw reflectie' : (r.anoniem ? 'Anonieme collega' : r.email);
+    const naam = r.isOwn ? 'Jouw beoordeling' : (r.anoniem ? 'Anonieme collega' : r.email);
     const datum = r.datum ? new Date(r.datum).toLocaleDateString('nl-BE') : '';
     const kleur = r.isOwn ? '#e8f5ee' : '#f5f7fa';
     const border = r.isOwn ? '1.5px solid #2E8B57' : '1px solid #DDE3EC';
@@ -5264,6 +5631,8 @@ async function submitReflectie() {
 
   // Herlaad reflecties
   await loadReflectiesTab(rfLesId);
+  // Werk de beoordeling-badge op de lessenkaart meteen bij
+  await loadAlleBeoordelingen();
 }
 
 // ── Jaarplan auto-save ─────────────────────────────────────
@@ -5293,10 +5662,16 @@ async function loadJaarplanFromSP() {
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
-dkInit().then(() => {
+dkInit().then(async () => {
   updateCounts();
   renderGrid();
   showView('zelfscan');
+  await Promise.all([loadEigenGegevenLessen(), loadAlleBeoordelingen()]);
+  renderGrid();
+  await teamToegangProbe();
+  if (document.getElementById('nav-team')) {
+    document.getElementById('nav-team').style.display = heeftTeamToegang ? '' : 'none';
+  }
 });
 
 function openHelp(){
