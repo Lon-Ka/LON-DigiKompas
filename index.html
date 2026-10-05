@@ -206,6 +206,12 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 .zs-sec-t.media{color:var(--media)}
 .zs-sec-t.comp{color:var(--comp)}
 .zsq{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 13px;margin-bottom:6px}
+.zs-hist{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 13px;margin-bottom:1.25rem}
+.zs-hist-t{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.zs-hist-rij{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:5px 0;border-top:1px solid var(--border);font-size:12px}
+.zs-hist-rij:first-of-type{border-top:none}
+.zs-hist-d{font-weight:700;min-width:84px}.zs-hist-f{color:var(--muted);min-width:110px}.zs-hist-s{flex:1;font-weight:600;font-size:11.5px}.zs-hist-s span{white-space:nowrap}
+.zs-verg{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 12px;margin:10px 0 0}
 .zsq.zsq-mist{border-color:#c0392b;background:#fdf0f0}
 .zs-mist-msg{background:#fdf0f0;border:1.5px solid #e8a39b;border-radius:var(--radius-sm);padding:10px 12px;font-size:12.5px;color:#8a2a1f}
 .pb.vb{font-size:12px}
@@ -642,6 +648,7 @@ if (window.self === window.top) {
       </div>
     </div>
 
+    <div id="zs-historiek"></div>
     <div id="zs-content"></div>
   </div>
 </div>
@@ -3589,12 +3596,12 @@ const DK_CONFIG = {
   LON: {
     clientId:   '481e8cb4-58ca-49b1-bb8b-5b02cbb45b4c',
     tenantId:   '655d15e1-e5fc-4868-8462-8463dc0ff014',
-    siteId:     'londerzeel.sharepoint.com,0af3ab31-8b22-413c-956f-047ffbbcf86c,e0158228-22a6-4225-87dc-fe7d619ae7e4',
-    lijsten: {
-      zelfscan:     '38b0af13-8988-40c1-89a2-19ee2f0da5e9',
-      jaarplan:     'd847a8d2-b3ac-411f-917c-18f6583793a0',
-      lesreflectie: 'bdc44cf1-75f3-4dbe-a715-1c4bb4159aba',
-      lesgegeven:   '', // TODO: aanmaken in SharePoint — zie SHAREPOINT_LIJST_LESGEGEVEN.md
+    siteId:     'londerwijs.sharepoint.com,531cc6f8-fb38-4684-a129-423d09fd6694,4d5ecb10-38f0-422f-b892-af256a5da6fc',
+    lijsten: { // aangemaakt 05/10/2026 met DigiKompas_LON_lijsten.ps1 op BaO - DigiKompas
+      zelfscan:     'cf407050-aca8-4f47-a674-c8c3af5c1244',
+      jaarplan:     'd609c559-7f9c-45a2-b0db-ff90cdfca845',
+      lesreflectie: 'fd7d350f-b6c7-4abf-83a4-3f83419c3c4e',
+      lesgegeven:   'c4f29921-14c4-47d0-8215-37361560175e',
     },
     redirectUri: 'https://lon-ka.github.io/LON-DigiKompas/',
     indienMap:   'DigiKompas lesindieningen', // map in de documentbibliotheek van de site
@@ -5008,6 +5015,7 @@ function setZSPhase(fase, btn) {
   document.querySelectorAll('.zs-phase-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderZSContent(fase);
+  renderZSHistoriek();
 }
 
 function renderZS() {
@@ -5018,6 +5026,7 @@ function renderZS() {
   zsActivePhase = null;
   zsLaatste = null;
   document.querySelectorAll('.zs-phase-btn').forEach(b => b.classList.remove('active'));
+  renderZSHistoriek();
 }
 
 function renderZSContent(fase) {
@@ -5115,12 +5124,25 @@ function doZS(fase) {
   const LABS = { ict: 'ICT-basisvaardigheden', media: 'Mediawijsheid', comp: 'Computationeel denken' };
   const prof = ZS_PROF[fase] || {};
   const voorstel = zsJaarplan(fase, pcts);
-  zsLaatste = { fase, pcts, ...voorstel };
 
-  saveZelfscan(fase, pcts, r.antw).then(() => {
-    const savedMsg = document.getElementById('zs-saved-msg');
-    if (savedMsg) { savedMsg.style.display = ''; setTimeout(() => savedMsg.style.display = 'none', 3000); }
-  });
+  // Vorige scan van deze fase. Klikt de leerkracht opnieuw op "Bekijk mijn resultaat"
+  // zonder iets te wijzigen, dan bewaren we niet opnieuw en vergelijken we met de scan daarvoor.
+  const vanFase = zsHistoriek.filter(h => h.fase === fase);
+  const ongewijzigd = vanFase[0] && vanFase[0].sessie && JSON.stringify(vanFase[0].antw) === JSON.stringify(r.antw);
+  const vergelijk = ongewijzigd ? (vanFase[1] || null) : (vanFase[0] || null);
+  zsLaatste = { fase, pcts, vergelijk, ...voorstel };
+
+  if (!ongewijzigd) {
+    saveZelfscan(fase, pcts, r.antw).then(() => {
+      const savedMsg = document.getElementById('zs-saved-msg');
+      if (savedMsg) { savedMsg.style.display = ''; setTimeout(() => savedMsg.style.display = 'none', 3000); }
+    });
+    if (dkToken) {
+      zsHistoriek.unshift({ datum: new Date(), fase, oud: null, pcts: { ...pcts }, antw: { ...r.antw }, sessie: true });
+      zsHistoriekGeladen = true;
+      renderZSHistoriek();
+    }
+  }
 
   // Sterkste / grootste groeikans — enkel als er echt verschil is
   const max = Math.max(...ZS_LL.map(ll => pcts[ll]));
@@ -5164,6 +5186,7 @@ function doZS(fase) {
     </div>`;
   }).join('')}
   <div style="font-size:10.5px;color:var(--muted);margin-top:-2px">Schaal: 0–33% ${ZS_NIVEAUS[0].label} · 34–66% ${ZS_NIVEAUS[1].label} · 67–100% ${ZS_NIVEAUS[2].label}</div>
+  ${zsVergelijkHtml(vergelijk, pcts)}
 
   ${profielHtml}
 
@@ -5254,6 +5277,92 @@ function doZS(fase) {
   </div>`;
 }
 
+// ═══════════════════════════════════════════
+// ZELFSCAN — vorige scans terugzien, inladen en vergelijken
+// ═══════════════════════════════════════════
+let zsHistoriek = [];        // [{ datum: Date, fase: '1'..'4' | null, oud: '1'..'4' | null, pcts, antw }]
+let zsHistoriekGeladen = false;
+
+async function loadZelfscans() {
+  if (!dkToken || !dkEmail || !CFG.lijsten.zelfscan) return;
+  const data = await dkGet(spUrl(CFG.lijsten.zelfscan) + '?$filter=fields/Email eq \'' + dkEmail + '\'&$expand=fields&$top=100');
+  zsHistoriek = ((data && data.value) || []).map(it => {
+    const f = it.fields || {};
+    const m = /^F([1-4])$/.exec(f.Fase || '');
+    let antw = {};
+    try { antw = JSON.parse(f.Antwoorden || '{}') || {}; } catch (e) { antw = {}; }
+    return {
+      datum: new Date(f.Datum || it.createdDateTime),
+      fase: m ? m[1] : null,                       // nieuwe indeling
+      oud: m ? null : (f.Fase || null),            // oude indeling ('1'–'4')
+      pcts: { ict: Math.round(+f.ScoreICT || 0), comp: Math.round(+f.ScoreComp || 0), media: Math.round(+f.ScoreMedia || 0) },
+      antw,
+    };
+  }).sort((a, b) => b.datum - a.datum);
+  zsHistoriekGeladen = true;
+  renderZSHistoriek();
+}
+
+// Meest recente bewaarde scan voor een fase (nieuwe indeling)
+function zsVorige(fase) { return zsHistoriek.find(h => h.fase === fase) || null; }
+
+function renderZSHistoriek() {
+  const box = document.getElementById('zs-historiek');
+  if (!box) return;
+  if (!zsHistoriekGeladen || !zsHistoriek.length) { box.innerHTML = ''; return; }
+  const LAB = { ict: 'ICT', comp: 'CT', media: 'Media' };
+  const COL = { ict: 'var(--ict)', comp: 'var(--comp)', media: 'var(--media)' };
+  const lijst = zsActivePhase ? zsHistoriek.filter(h => h.fase === zsActivePhase) : zsHistoriek;
+  const toon = lijst.slice(0, 6);
+  box.innerHTML = `<div class="zs-hist">
+    <div class="zs-hist-t">🕘 Mijn vorige zelfscans${zsActivePhase ? ' · ' + FL[zsActivePhase] : ''}</div>
+    ${toon.length ? toon.map(h => {
+      const idx = zsHistoriek.indexOf(h);
+      return `<div class="zs-hist-rij">
+        <span class="zs-hist-d">${h.datum.toLocaleDateString('nl-BE', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+        <span class="zs-hist-f">${h.fase ? FL[h.fase] : 'Fase ' + (h.oud || '?') + ' (oude indeling)'}</span>
+        <span class="zs-hist-s">${['ict', 'comp', 'media'].map(ll => `<span style="color:${COL[ll]}">${LAB[ll]} ${h.pcts[ll]}%</span>`).join(' · ')}</span>
+        ${h.fase ? `<button class="btn" style="font-size:11px;padding:4px 10px" onclick="zsLaadAntwoorden(${idx})" title="Vul de zelfscan in met deze antwoorden, zodat je enkel aanpast wat veranderde">↺ Antwoorden inladen</button>`
+                 : `<span style="font-size:10.5px;color:var(--muted)" title="De vragen zijn sinds de nieuwe fase-indeling veranderd">niet meer in te laden</span>`}
+      </div>`;
+    }).join('') : `<div style="font-size:12px;color:var(--muted)">Nog geen zelfscan bewaard voor deze fase.</div>`}
+    ${lijst.length > toon.length ? `<div style="font-size:11px;color:var(--muted);margin-top:4px">+ ${lijst.length - toon.length} oudere</div>` : ''}
+  </div>`;
+}
+
+function zsLaadAntwoorden(idx) {
+  const h = zsHistoriek[idx];
+  if (!h || !h.fase) return;
+  if (zsActivePhase !== h.fase) setZSPhase(h.fase, document.querySelectorAll('.zs-phase-btn')[+h.fase - 1]);
+  let n = 0;
+  Object.entries(h.antw || {}).forEach(([qi, v]) => {
+    if (v === null || v === undefined || !qi.startsWith(h.fase + '_')) return;
+    const b = document.querySelector(`.zsopt[data-qi="${qi}"][data-v="${v}"]`);
+    if (b) { zsSelect(b); n++; }
+  });
+  const res = document.getElementById('zs-res');
+  res.style.display = 'block';
+  res.innerHTML = `<div style="background:var(--ict-l);border-radius:var(--radius-sm);padding:10px 12px;font-size:12.5px">↺ ${n} antwoorden van je zelfscan van <strong>${h.datum.toLocaleDateString('nl-BE')}</strong> ingeladen. Pas aan wat veranderd is en klik op <strong>Bekijk mijn resultaat</strong>.</div>`;
+  document.getElementById('zs-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Vergelijking met de vorige scan (HTML-blok voor het resultaat)
+function zsVergelijkHtml(vorige, pcts) {
+  if (!vorige) return '';
+  const LABS = { ict: 'ICT-basisvaardigheden', comp: 'Computationeel denken', media: 'Mediawijsheid' };
+  return `<div class="zs-verg">
+    <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:5px">📈 Vergeleken met je zelfscan van ${vorige.datum.toLocaleDateString('nl-BE')}</div>
+    ${['ict', 'comp', 'media'].map(ll => {
+      const d = pcts[ll] - vorige.pcts[ll];
+      const kleur = d > 0 ? '#1a6e52' : d < 0 ? '#c0392b' : 'var(--muted)';
+      return `<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0">
+        <span>${LABS[ll]}</span>
+        <span>${vorige.pcts[ll]}% → <strong>${pcts[ll]}%</strong> <span style="color:${kleur};font-weight:700;margin-left:4px">${d > 0 ? '+' + d : d < 0 ? d : '='}</span></span>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
 // ── Jaarplan overnemen vanuit zelfscan: neemt EXACT het getoonde voorstel over ──
 function applyJaarplanSuggestie(fase) {
   if (!zsLaatste || zsLaatste.fase !== fase) { alert('Klik eerst op "Bekijk mijn resultaat".'); return; }
@@ -5270,7 +5379,7 @@ function applyJaarplanSuggestie(fase) {
 // ── Afdrukken professionaliseringsvoorstel (gebruikt hetzelfde resultaat als het scherm) ──
 function printProfVoorstel(fase) {
   if (!zsLaatste || zsLaatste.fase !== fase) { alert('Klik eerst op "Bekijk mijn resultaat".'); return; }
-  const { pcts, plan } = zsLaatste;
+  const { pcts, plan, vergelijk } = zsLaatste;
   const COLS_PRINT = { ict: '#0f5c8a', media: '#7b2d8b', comp: '#c25c0a' };
   const LABS = { ict: 'ICT-basisvaardigheden', media: 'Mediawijsheid', comp: 'Computationeel denken' };
   const prof = ZS_PROF[fase] || {};
@@ -5306,6 +5415,7 @@ function printProfVoorstel(fase) {
   }).join('')}
   <p style="font-size:12px;color:#888">${max - min < ZS_EVENWICHT ? 'Evenwichtig profiel — geen leerlijn springt eruit.' : 'Groeikans: <strong>' + groei.map(ll => LABS[ll]).join(' & ') + '</strong>'}</p>
 
+  ${vergelijk ? '<p style="font-size:12px;color:#666">Vergeleken met ' + vergelijk.datum.toLocaleDateString('nl-BE') + ': ' + ZS_LL.map(ll => LABS[ll] + ' ' + vergelijk.pcts[ll] + '% → ' + pcts[ll] + '%').join(' · ') + '</p>' : ''}
   <h2>Professionaliseringsvoorstel per leerlijn</h2>
   ${ZS_LL.map(ll => {
     const n = zsNiveau(pcts[ll]);
@@ -6233,7 +6343,7 @@ dkInit().then(async () => {
   updateCounts();
   renderGrid();
   showView('zelfscan');
-  await Promise.all([loadEigenGegevenLessen(), loadAlleBeoordelingen()]);
+  await Promise.all([loadEigenGegevenLessen(), loadAlleBeoordelingen(), loadZelfscans()]);
   renderGrid();
   await teamToegangProbe();
   if (document.getElementById('nav-team')) {
