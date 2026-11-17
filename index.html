@@ -279,6 +279,10 @@ body{font-family:var(--font-b);background:var(--bg);color:var(--text);min-height
 /* ── UNPLUGGED BADGE ── */
 .up-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:20px;background:#fff3cd;color:#7a5800;border:1px solid #e6c84a}
 .card .up-badge{margin-top:auto}
+
+/* ── MEDIAWIJS BADGE ── */
+.mw-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:20px;background:#e8f5e9;color:#1b5e20;border:1px solid #81c784}
+.card .mw-badge{margin-top:auto}
 .gegeven-badge{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:700;letter-spacing:.02em;padding:2px 7px;border-radius:20px;margin-top:auto;width:fit-content}
 .gegeven-nu{background:#e3f6e9;color:#1a7a42;border:1px solid #8fd6a8}
 .gegeven-vorig{background:#fdeee3;color:#a34c12;border:1px solid #f0b788}
@@ -3424,7 +3428,308 @@ ll_doel:'Mediawijsheid › DIG 3.1 · Kennismaken met verschillende vormen van m
 LESSEN_JONG.forEach(l => LESSONS.push(l));
 
 
+// ═══════════════════════════════════════════════════════════
+// SCHAAL VAN M — Mediawijs lessen (nov 2026)
+// Toegevoegd op suggestie van Iris De Vocht (De Kei)
+// Bron: Mediawijs DSVM-werkboeken 1e, 2e, 3e graad
+// ═══════════════════════════════════════════════════════════
+const LESSEN_MW = [
+
+// ── 1e GRAAD (Fase 2–3, L1–L2) ──
+
+{id:600,ll:'media',f:'2',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 1G L2 — Vertel mij iets',duur:'45 min',
+doel:'Een mediaboodschap herkennen en begrijpen hoe ze gemaakt is',
+doel_lang:'Leerlingen ontdekken dat media bewust worden gemaakt om iets te vertellen. Ze onderzoeken eenvoudige mediaboodschappen (foto, filmpje, reclameposter) en stellen de vraag: "Wie maakte dit? Voor wie? Waarom?" — de drie kernvragen van mediawijsheid.',
+doelen:['Een mediaboodschap herkennen en benoemen','Vragen stellen bij een mediaboodschap: wie, voor wie, waarom','Onderscheid maken tussen informatie en mening in media','Eigen mediaboodschappen (tekening, foto) bewust maken'],
+materialen:['DSVM Werkboek 1e graad, les 2','Reclameposter of korte videospot','Fotocamera of tablet voor eigen mediaboodschap','Werkblad: 3 vragen bij een mediaboodschap'],
+stappen:[
+  {nr:1,label:'Opwarmer — Wat is een boodschap?',tijd:'7 min',omschr:'"Stuur een boodschap naar iemand in de klas — zonder woorden." Leerlingen tekenen, gebaren of maken een geluid. Bespreking: "Hoe wist je wat de boodschap was? Wat hielp je om het te begrijpen?"'},
+  {nr:2,label:'Mediaboodschappen analyseren',tijd:'12 min',omschr:'Toon 3 mediaboodschappen: een nieuwsfoto, een reclame en een emoji-gesprek. Leerlingen beantwoorden per boodschap: Wie maakte dit? Voor wie? Wat wil de maker zeggen? Bespreek de verschillen.',tip:'"Elke mediaboodschap is een keuze: de fotograaf koos dit moment, de reclamemaker koos deze kleuren. Niets is toevallig."'},
+  {nr:3,label:'Zelf een boodschap maken',tijd:'15 min',omschr:'Leerlingen kiezen een onderwerp (hun favoriete spel, hun klas, een dier) en maken twee boodschappen: één blije versie en één verdrietige versie — met dezelfde inhoud. Vergelijk: wat veranderde er? Hoe bereik je dat effect?'},
+  {nr:4,label:'Vergelijken en bespreken',tijd:'8 min',omschr:'Duo\'s wisselen hun boodschappen uit. Kunnen ze raden welke boodschap "blij" en welke "verdrietig" is? Bespreking: welke keuzes maakten het verschil (kleur, gezichtsuitdrukking, woorden)?'},
+  {nr:5,label:'Afsluiter — De drie vragen',tijd:'3 min',omschr:'Vat samen: "Bij elke mediaboodschap stellen we drie vragen: Wie maakte het? Voor wie? Waarom? Die vragen helpen je om media te begrijpen." Leerlingen schrijven de drie vragen op een kaartje.'}
+],
+diff_support:'Beperk tot één mediaboodschap en één vraag. Werk met concrete, vertrouwde afbeeldingen.',
+diff_extend:'Laat leerlingen een "mediadagboek" bijhouden: welke mediaboodschappen zagen ze vandaag? Voor elk: wie maakte het, voor wie, waarom?',
+eval:['Benoemen leerlingen minstens 2 kenmerken van een bewust gemaakte mediaboodschap?','Stellen ze de drie vragen correct bij een onbekende mediaboodschap?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.1–3.2 · Mediaboodschappen herkennen'},
+
+{id:601,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 1G L5 — Reclame of nieuws?',duur:'45 min',
+doel:'Reclame en nieuws onderscheiden en de technieken van reclame herkennen',
+doel_lang:'Leerlingen leren het verschil tussen een nieuwsbericht en een reclameboodschap herkennen. Ze ontdekken welke technieken reclamemakers gebruiken (mooie beelden, muziek, beroemdheden, emoties) en beginnen bewust na te denken over de bedoeling achter mediaboodschappen.',
+doelen:['Het verschil uitleggen tussen reclame en nieuws','Minstens 3 reclametechnieken herkennen en benoemen','Kritisch nadenken over de bedoeling achter een reclameboodschap','De eigen reactie op reclame beschrijven'],
+materialen:['DSVM Werkboek 1e graad, les 5','Reclame-fragmenten (tv-spot, online banner, tijdschriftadvertentie)','Nieuwsfragment (kinderjournaal, klas-nieuws)','Sorteerspel: reclame of nieuws?'],
+stappen:[
+  {nr:1,label:'Sorteerspel — Reclame of nieuws?',tijd:'8 min',omschr:'Toon 10 korte fragmenten of afbeeldingen. Leerlingen stemmen via handopsteking of kaartje: reclame of nieuws? Bespreek de twijfelgevallen: "Wat twijfelde je? Welk element deed de balans doorschieten?"'},
+  {nr:2,label:'Reclametechnieken verkennen',tijd:'12 min',omschr:'Analyseer één tv-spot in detail. Maak samen een lijst van technieken: (1) Mooie beelden/muziek om een goed gevoel te geven. (2) Een bekende persoon die het product aanprijst. (3) "Iedereen heeft dit al!" — sociale druk. (4) Voor/na-vergelijking. (5) Een probleem dat het product oplost. Welke technieken gebruik deze spot?',tip:'"Reclamemakers studeren jaren om jou een goed gevoel te geven over een product. Ze zijn heel goed in hun werk."'},
+  {nr:3,label:'Zelf reclame maken — bewust',tijd:'12 min',omschr:'In duo\'s: maak een reclameposter voor een zelfbedacht product. Kies bewust minstens 2 technieken. Schrijf naast de poster welke technieken je gebruikte en waarom.'},
+  {nr:4,label:'Vergelijking — Nieuwsbericht schrijven',tijd:'8 min',omschr:'Schrijf nu een nieuwsbericht over hetzelfde product: wat, wie, wanneer, waar, waarom — zonder reclametechnieken. Vergelijk de poster en het nieuwsbericht naast elkaar. Wat is het grote verschil?'},
+  {nr:5,label:'Afsluiter — Jouw eigen reactie',tijd:'5 min',omschr:'"Welke reclame vond jij overtuigend? Waarom?" Bespreek: je mag nog steeds het product leuk vinden — maar nu weet je waarom je het leuk vindt.'}
+],
+diff_support:'Gebruik slechts 2 reclametechnieken. Geef een schema mee om de poster in te vullen.',
+diff_extend:'Laat leerlingen een reclamecampagne voor een fictief product analyseren: welke doelgroep, welke kanalen, welke technieken? Schrijf een "reclamerapport".',
+eval:['Onderscheiden leerlingen reclame van nieuws in onbekende voorbeelden?','Benoemen ze minstens 2 gebruikte technieken in een reclameboodschap?','Leggen ze uit waarom een bepaalde techniek werkt?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.3–3.4 · Reclame en kritisch mediagebruik'},
+
+{id:602,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 1G L6 — Privacy op het internet',duur:'50 min',
+doel:'Begrijpen wat persoonsgegevens zijn en waarom privacy online belangrijk is',
+doel_lang:'Leerlingen ontdekken welke informatie "privé" is en wat de risico\'s zijn van het delen van persoonsgegevens online. Ze leren praktische regels voor online privacy en denken na over wie toegang heeft tot hun informatie op sociale media en apps.',
+doelen:['Persoonsgegevens herkennen en onderscheid maken tussen publieke en private informatie','Uitleggen waarom het delen van privé-informatie online risico\'s inhoudt','Minstens 3 concrete privacyregels toepassen','Kritisch nadenken over welke apps en websites om hun gegevens vragen'],
+materialen:['DSVM Werkboek 1e graad, les 6','Privacykaartjes: publiek of privé?','Voorbeeldprofiel op een fictief sociaal netwerk','Werkblad: mijn privacyregels'],
+stappen:[
+  {nr:1,label:'Opwarmer — Wat wil jij niet vertellen aan vreemden?',tijd:'5 min',omschr:'"Stel dat een vreemde op straat vraagt: Wat is je adres? Hoe oud ben je? Wat is je wachtwoord?" Welke vragen beantwoord je niet? Waarom niet? Koppel: "Diezelfde vreemde kan ook online vragen stellen — via apps, websites, spelletjes."'},
+  {nr:2,label:'Persoonsgegevens sorteren',tijd:'10 min',omschr:'Geef elk duo een set privacykaartjes: naam, voornaam, adres, school, foto, wachtwoord, e-mailadres, geboortedatum, telefoonnummer, hobby\'s. Sorteer in drie groepen: Altijd privé / Soms publiek / Meestal publiek. Bespreek de grenzen.',tip:'"Naam en voornaam zijn soms publiek — maar naam + adres + school samen is gevaarlijker dan elk apart."'},
+  {nr:3,label:'Profiel analyseren',tijd:'12 min',omschr:'Toon een voorbeeldprofiel op een fictief sociaal netwerk. Welke persoonsgegevens staan er in? Is dat verstandig? Welke informatie zou je verwijderen? Herschrijf het profiel samen als klas: wat mag er wél in?'},
+  {nr:4,label:'Apps en toestemmingen',tijd:'10 min',omschr:'Toon voorbeelden van app-meldingen die om toestemming vragen (locatie, camera, contacten, microfoon). Bespreek: waarom wil een spelletjes-app jouw locatie weten? Leerlingen leren: "Als je niet weet waarom een app iets vraagt, is "nee" altijd veilig."'},
+  {nr:5,label:'Mijn privacyregels',tijd:'8 min',omschr:'Leerlingen schrijven hun eigen top-3 privacyregels op een kaartje om thuis op te hangen. Klassikale uitwisseling: welke regel is de belangrijkste? Waarom?'},
+  {nr:6,label:'Afsluiter',tijd:'5 min',omschr:'"Privacy is niet hetzelfde als geheimzinnig doen. Het betekent dat jij kiest wat je deelt, met wie en wanneer." Herhaal de kernboodschap: als je twijfelt, vraag een volwassene.'}
+],
+diff_support:'Gebruik slechts 5 privacykaartjes. Beperk tot de regel: naam + adres + school niet online zetten.',
+diff_extend:'Laat leerlingen de privacyinstellingen van een fictief sociaal netwerk aanpassen: wat zet je op "alleen vrienden"? Schrijf een "privacy-audit".',
+eval:['Onderscheiden leerlingen minstens 5 persoonsgegevens van publieke informatie?','Noemen ze minstens 2 risico\'s van het delen van privé-informatie?','Passen ze minstens 1 privacyregel toe op een nieuw voorbeeld?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.5–3.7 · Privacy en persoonsgegevens'},
+
+{id:603,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 1G L8 — Omgaan met online pesten',duur:'50 min',
+doel:'Cyberpesten herkennen en weten wat je kunt doen als je ermee te maken krijgt',
+doel_lang:'Leerlingen leren het verschil tussen plagen en pesten, en specifiek cyberpesten herkennen. Ze oefenen in het reageren op pestgedrag online: wanneer negeer je het, wanneer blokkeer je, wanneer vraag je hulp? De nadruk ligt op empowerment en hulp zoeken.',
+doelen:['Het verschil uitleggen tussen plagen en (cyber)pesten','Minstens 3 vormen van cyberpesten herkennen','Weten wat te doen als je zelf gepest wordt of iemand anders ziet worden gepest','Begrijpen waarom cyberpesten erger aanvoelt dan gewoon pesten'],
+materialen:['DSVM Werkboek 1e graad, les 8','Scenario-kaartjes: plagen of pesten?','Stappenplan bij cyberpesten (groot formaat)','Rollenspel-situaties'],
+stappen:[
+  {nr:1,label:'Plagen of pesten? — Scenario\'s',tijd:'10 min',omschr:'Lees 6 scenario\'s voor. Leerlingen stemmen: plagen of pesten? Bespreking. Kernverschil: plagen stopt als iemand "nee" zegt; pesten gaat door. Cyberpesten: het stopt niet als je thuiskomt.'},
+  {nr:2,label:'Vormen van cyberpesten',tijd:'8 min',omschr:'Bespreek 5 vormen: (1) Gemene berichten sturen. (2) Foto\'s verspreiden zonder toestemming. (3) Iemand uitsluiten van een groepschat. (4) Een vals profiel aanmaken. (5) Iemand steeds opnieuw berichten sturen die ze niet wil. Leerlingen geven bij elke vorm een echt voorbeeld.',tip:'"Cyberpesten is meestal erger dan gewoon pesten: het stopt niet als je slaapt, iedereen kan het zien, en je kunt je er moeilijker aan onttrekken."'},
+  {nr:3,label:'Wat doe jij? — Stappenplan',tijd:'12 min',omschr:'Introduceer het stappenplan: (1) Stop — reageer niet meteen terug. (2) Bewaar — maak een screenshot. (3) Vertel — aan een volwassene die je vertrouwt. (4) Blokkeer — als het direct stoort. Oefenen: wat doe je in scenario X?'},
+  {nr:4,label:'Rollenspel — Hulp vragen',tijd:'12 min',omschr:'In tweetallen: één leerling speelt iemand die gepest wordt, één speelt de vertrouwenspersoon. Doel: oefenen om het uit te leggen. Wissel rollen. Bespreking: wat was moeilijk? Wat hielp?'},
+  {nr:5,label:'Afsluiter — Jij bent niet alleen',tijd:'8 min',omschr:'"Als iemand je cyberpest, is het nooit jouw schuld." Herhaal de drie kernboodschappen: Stop — Bewaar — Vertel. Bespreek welke vertrouwenspersonen in de klas en school beschikbaar zijn.'}
+],
+diff_support:'Gebruik slechts 2 scenario\'s. Focus op het stappenplan en oefen het stap voor stap in.',
+diff_extend:'Laat leerlingen een "anti-pest-charter" opstellen voor de klas: welke regels gelden voor de groepschat? Formuleer positief.',
+eval:['Leggen leerlingen het verschil uit tussen plagen en pesten met een eigen voorbeeld?','Noemen ze het stappenplan (Stop–Bewaar–Vertel) correct?','Kunnen ze minstens 2 vormen van cyberpesten benoemen?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.8–3.10 · Cyberpesten en online veiligheid'},
+
+// ── 2e GRAAD (Fase 3, L3–L4) ──
+
+{id:610,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L2 — Hoe werken media?',duur:'50 min',
+doel:'Begrijpen hoe mediaboodschappen worden gemaakt en verspreid',
+doel_lang:'Leerlingen onderzoeken hoe media-inhoud tot stand komt: wie maakt het, welke keuzes worden gemaakt, en hoe bereikt het de ontvanger? Ze vergelijken verschillende mediakanalen (krant, radio, tv, sociale media) en onderzoeken hoe dezelfde gebeurtenis anders wordt weergegeven.',
+doelen:['De productieketen van een mediaboodschap beschrijven (maker → kanaal → ontvanger)','Dezelfde gebeurtenis in verschillende media vergelijken','Begrijpen hoe mediakeuzes (woordkeuze, beeld, toon) de boodschap beïnvloeden','Een eigen mediaboodschap bewust produceren voor een specifiek kanaal'],
+materialen:['DSVM Handleiding 2e graad, les 2','Drie versies van hetzelfde nieuws (krant, online, sociaal medium)','Mediakanalenkaart','Nieuwspresentatieformulier'],
+stappen:[
+  {nr:1,label:'Opwarmer — Hoe hoorde jij het nieuws?',tijd:'5 min',omschr:'"Hoe hoorde je het laatste nieuws dat je je herinnert?" Inventariseer: tv, krant, ouders, WhatsApp, YouTube, radio. Maak een staafgrafiek op het bord: welk kanaal gebruiken de meeste leerlingen?'},
+  {nr:2,label:'Vergelijking — Hetzelfde nieuws, drie versies',tijd:'15 min',omschr:'Toon drie versies van dezelfde gebeurtenis: een krantenartikel, een sociale-mediabericht en een tv-fragment. In groepen: vul de vergelijkingstabel in. Welke details staan in elk? Wat ontbreekt? Welke toon? Welke foto/beeld? Wat zou je als lezer/kijker anders begrijpen?',tip:'"Een foto zegt meer dan duizend woorden — maar welke foto wordt gekozen, en door wie, bepaalt mee hoe jij de situatie ziet."'},
+  {nr:3,label:'Productieketen ontrafelen',tijd:'10 min',omschr:'Bespreek: hoe ontstaat een nieuwsbericht? Journalist → redactie → editor → kanaal → ontvanger. Welke keuzes worden op elk moment gemaakt? Wie beslist wat "nieuws" is?'},
+  {nr:4,label:'Eigen nieuwsbericht maken',tijd:'12 min',omschr:'In duo\'s: leerlingen kiezen een "schoolgebeurtenis" en schrijven twee versies: één voor de schoolkrant (formeel, feitelijk) en één voor de klas-groepschat (informeel, snel). Vergelijk de twee versies.'},
+  {nr:5,label:'Afsluiter',tijd:'8 min',omschr:'Presenteer: "Media zijn niet neutraal — elke keuze die een mediamens maakt, beïnvloedt jou als ontvanger." Kritisch mediagebruik is geen wantrouwen, maar bewust kijken.'}
+],
+diff_support:'Gebruik één kanaal en één tekst. Beperk de vergelijking tot woordkeuze (positief/negatief).',
+diff_extend:'Laat leerlingen een "media-audit" uitvoeren: volg één dag lang welke media je gebruikt. Analyseer: welke kanalen domineerden? Welke ontbraken?',
+eval:['Beschrijven leerlingen de productieketen van een mediaboodschap?','Vergelijken ze dezelfde gebeurtenis correct in twee kanalen?','Kunnen ze uitleggen hoe een mediakeuze de boodschap beïnvloedt?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.11–3.13 · Mediakritiek en mediaproductie'},
+
+{id:611,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L3 — Echte en neppe informatie',duur:'55 min',
+doel:'Betrouwbare van onbetrouwbare online informatie onderscheiden via een fact-checklist',
+doel_lang:'Leerlingen leren stap voor stap online informatie beoordelen: is de bron betrouwbaar, zijn de feiten controleerbaar, zijn de beelden authentiek? Ze oefenen met een fact-checklist op echte voorbeelden van misleidende inhoud, geschikt voor de leeftijdsgroep.',
+doelen:['Een fact-checklist systematisch toepassen op een online tekst','Minstens 3 kenmerken van onbetrouwbare informatie noemen','Begrijpen hoe misleidende informatie wordt verspreid via sociale media','Een eigen oordeel formuleren en onderbouwen'],
+materialen:['DSVM Handleiding 2e graad, les 3','Fact-checklist (5 stappen)','3 voorbeeldteksten: 1 betrouwbaar, 1 misleidend, 1 satirisch','Computers of tablets voor broncontrole'],
+stappen:[
+  {nr:1,label:'Opwarmer — Geloof jij dit?',tijd:'7 min',omschr:'Toon 3 koppen: één echt nieuws, één satire, één nepnieuws. Stemming: geloof je het? Bespreking: op basis waarvan beslis je? Veel leerlingen beslissen op "gevoel" — de les leert hoe je het systematisch kunt controleren.'},
+  {nr:2,label:'De fact-checklist',tijd:'10 min',omschr:'Introduceer de 5 stappen: (1) Wie is de auteur of bron? (2) Wanneer werd het gepubliceerd? (3) Staan de feiten ook ergens anders? (4) Zijn de foto\'s authentiek (reverse image search)? (5) Is de toon overdreven emotioneel? Doe de eerste stap samen op een voorbeeld.',tip:'"Nepnieuws speelt altijd in op emoties: angst, woede, verontwaardiging. Als je sterk reageert op een bericht, is dat het moment om te checken."'},
+  {nr:3,label:'Groepsoefening — Drie teksten',tijd:'18 min',omschr:'In groepen van 3: pas de fact-checklist toe op drie teksten (één per groeplid). Bespreek samen: welke is betrouwbaar? Welke misleidend? Welke satirisch? Presenteer je oordeel + 2 bewijzen aan de klas.'},
+  {nr:4,label:'Hoe verspreid het zich?',tijd:'10 min',omschr:'Demonstratie: één leerling "stuurt" een bericht naar 2 medeleerlingen, die het elk aan 2 anderen sturen... Bespreek: hoe snel verspreidt informatie zich? Wat als het nepnieuws was? Hoe stop je de verspreiding?'},
+  {nr:5,label:'Afsluiter — Wat doe jij?',tijd:'10 min',omschr:'"Jij hebt nu een superkracht: je kunt dingen controleren voordat je ze doorstuurt." Drie regels: (1) Stop voor je deelt. (2) Check de bron. (3) Twijfel je? Deel niet.'}
+],
+diff_support:'Gebruik slechts de eerste 3 stappen van de checklist. Doe alles samen als klas.',
+diff_extend:'Laat leerlingen zelf een "misleidend" bericht opstellen (met fictieve inhoud). Welke technieken gebruikten ze? Hoe herken je het?',
+eval:['Passen leerlingen minstens 3 stappen van de fact-checklist correct toe?','Onderscheiden ze betrouwbare van onbetrouwbare informatie in een nieuw voorbeeld?','Verwoorden ze hun oordeel met minstens 2 concrete argumenten?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.14–3.15 · Fact-checking en nepnieuws'},
+
+{id:612,ll:'media',f:'3',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L4 — Jouw digitale voetafdruk',duur:'50 min',
+doel:'Begrijpen wat een digitale voetafdruk is en hoe je die bewust beheert',
+doel_lang:'Leerlingen ontdekken dat elke online actie een spoor achterlaat — en dat die sporen data zijn. Ze begrijpen hoe bedrijven deze data gebruiken, en leren hoe ze hun eigen digitale voetafdruk bewust kunnen beheren: wat zet je online, en wat niet?',
+doelen:['Uitleggen wat een digitale voetafdruk is en voorbeelden geven','Begrijpen hoe data wordt verzameld en gebruikt door apps en websites','Minstens 3 concrete stappen nemen om hun digitale voetafdruk te beheren','Nadenken over de langetermijn-impact van online keuzes'],
+materialen:['DSVM Handleiding 2e graad, les 4','Voetafdrukposter (groot formaat)','Scenario-kaartjes online acties','Computers of tablets'],
+stappen:[
+  {nr:1,label:'Opwarmer — Jouw onzichtbare sporen',tijd:'6 min',omschr:'"Stel dat een detective een week lang alles bijhield wat je online deed. Wat zou hij weten?" Brainstorm: likes, zoekopdrachten, koopgedrag, locaties, berichten. Bespreking: dat is jouw digitale voetafdruk.'},
+  {nr:2,label:'Hoe werkt dataverzameling?',tijd:'10 min',omschr:'Vereenvoudigde uitleg: apps en websites verdienen geld door advertenties. Advertenties zijn meer waard als ze gepersonaliseerd zijn. Personalisatie vraagt data. Jouw gratis app betaal je met jouw data. Bespreek: is dat eerlijk? Wist je dat?',tip:'"Als een product gratis is, ben jij het product." Leg dit concreet uit: YouTube, Instagram, games — ze verdienen niet aan jou, maar aan de adverteerders die jouw aandacht kopen."'},
+  {nr:3,label:'Scenario\'s analyseren',tijd:'12 min',omschr:'In duo\'s: leerlingen krijgen 4 scenario-kaartjes (tiener post vakantiefoto met locatie / persoon zoekt medische symptomen / kind speelt gratis spelletje met in-app aankopen / leerling logt in met Google op externe site). Analyseer: welke data laat je achter? Welke risico\'s zijn er?'},
+  {nr:4,label:'Jouw voetafdruk beheren',tijd:'12 min',omschr:'Bespreek 5 concrete acties: (1) Privacy-instellingen nakijken. (2) Geen locatie delen bij berichten. (3) Toestemmingen van apps beperken. (4) Nadenken voor je iets post. (5) Zoeken via privévenster voor gevoelige zoekopdrachten. Leerlingen kiezen welke acties zij direct zullen nemen.'},
+  {nr:5,label:'Afsluiter — Langetermijn denken',tijd:'10 min',omschr:'"Wat je nu online zet, kan later nog zichtbaar zijn." Bespreek de tijdlijn: foto die je op 10 jaar post, kan iemand nog vinden als je 20 bent. Eindboodschap: elke online actie is een keuze — en keuzes hebben gevolgen.'}
+],
+diff_support:'Focus op de boodschap: "Denk na voor je iets post." Gebruik slechts 2 scenario\'s.',
+diff_extend:'Laat leerlingen hun eigen digitale profiel analyseren: zoek jezelf op Google. Wat vind je? Wat zou je liever niet willen dat anderen zien?',
+eval:['Leggen leerlingen uit wat een digitale voetafdruk is in eigen woorden?','Noemen ze minstens 3 manieren hoe data wordt verzameld?','Formuleren ze minstens 2 concrete stappen om hun voetafdruk te beheren?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.16–3.17 · Digitale voetafdruk en privacy'},
+
+{id:613,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L5 — Kritisch kijken naar beelden',duur:'55 min',
+doel:'Begrijpen hoe beelden bewerkt en ingezet worden om een boodschap te sturen',
+doel_lang:'Leerlingen analyseren hoe beelden worden gemanipuleerd en ingezet in media: bijsnijden, filteren, retoucheren, deepfakes. Ze oefenen met het kritisch beoordelen van beelden en leren concrete verificatietechnieken (omgekeerd zoeken op afbeelding).',
+doelen:['Minstens 4 manieren beschrijven waarop beelden worden bewerkt','Een reverse image search uitvoeren om een beeld te verifiëren','Beelden kritisch analyseren: context, bron, timing','Begrijpen hoe bewerkte beelden de publieke opinie kunnen beïnvloeden'],
+materialen:['DSVM Handleiding 2e graad, les 5','Reeks "voor en na"-beelden','Computers met internettoegang voor reverse image search','Verificatiestappenplan-kaartje'],
+stappen:[
+  {nr:1,label:'Opwarmer — Is dit echt?',tijd:'7 min',omschr:'Toon 5 beelden: mix van echte, licht bewerkte en sterk gemanipuleerde foto\'s. Leerlingen stemmen: echt of bewerkt? Bespreking: hoe moeilijk is het om het verschil te zien? Wat zijn de signalen?'},
+  {nr:2,label:'Bewerkingstechnieken',tijd:'12 min',omschr:'Bespreek 5 technieken: (1) Bijsnijden — context weghalen. (2) Filters en kleurcorrectie. (3) Retoucheren — lichaam of gezicht aanpassen. (4) Out-of-context — echte foto bij verkeerd nieuwsbericht. (5) Deepfake — AI-gegenereerd gezicht. Toon bij elk een concreet voorbeeld.',tip:'"Een foto die uit zijn context is getrokken is technisch "niet bewerkt", maar toch misleidend. Context is alles."'},
+  {nr:3,label:'Reverse image search oefenen',tijd:'12 min',omschr:'Leerlingen voeren zelf een reverse image search uit op 2 opgegeven beelden. Stappen: (1) Rechtsklik → "Zoek afbeelding op" of sleep naar images.google.com. (2) Bekijk de resultaten: wanneer verscheen het eerst? In welke context? (3) Formuleer een oordeel: authentiek, uit context, bewerkt?'},
+  {nr:4,label:'Casestudy — Media-beeld analyseren',tijd:'12 min',omschr:'In groepen: analyseer een mediagebruik van een echt of fictief beeld dat viral ging. Welk verhaal vertelde het? Wat was de werkelijkheid? Welke impact had het? Presenteer kort.'},
+  {nr:5,label:'Afsluiter',tijd:'12 min',omschr:'"Je hebt nu een superkracht: je kunt beelden controleren." Herhaal de drie vragen: Waar komt het beeld vandaan? Wanneer was het voor het eerst te zien? In welke context staat het echt?'}
+],
+diff_support:'Focus op bijsnijden en out-of-context. Doe de reverse image search samen als klas.',
+diff_extend:'Laat leerlingen een "beeldmanipulatie-workshop" geven aan een jongere klas: kies 3 technieken en leg ze uit met voorbeelden.',
+eval:['Beschrijven leerlingen minstens 3 manipulatietechnieken correct?','Voeren ze zelfstandig een reverse image search uit?','Beoordelen ze een onbekend beeld met 2 concrete verificatiestappen?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.18–3.20 · Beeldkritiek en verificatie'},
+
+{id:614,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L6 — Online identiteit en reputatie',duur:'55 min',
+doel:'Begrijpen hoe online identiteit wordt opgebouwd en beheerd',
+doel_lang:'Leerlingen onderzoeken het verschil tussen hun "echte" identiteit en hun online identiteit. Ze ontdekken hoe een online reputatie wordt opgebouwd door keuzes op sociale media, en nadenken over de langetermijn-gevolgen van hun digitale aanwezigheid.',
+doelen:['Het begrip "online identiteit" uitleggen en voorbeelden geven','Begrijpen hoe online keuzes de reputatie beïnvloeden','Minstens 3 factoren noemen die een online imago bepalen','Een positieve online identiteit bewust opbouwen'],
+materialen:['DSVM Handleiding 2e graad, les 6','Profiel-analyse-werkblad','Scenario-kaartjes online keuzes','Zelfreflectie-formulier'],
+stappen:[
+  {nr:1,label:'Opwarmer — Wie ben jij online?',tijd:'8 min',omschr:'"Stel dat iemand die je nog niet kent jouw online profielen bekijkt — welk beeld krijgt hij van jou?" Leerlingen schrijven 5 woorden die dat beeld beschrijven. Vergelijk: is dat het beeld dat je wil geven?'},
+  {nr:2,label:'Echte vs. online identiteit',tijd:'10 min',omschr:'Bespreek het concept: online identiteit is een gecureerde versie van jezelf. We tonen wat we willen dat anderen zien. Dat is niet per se oneerlijk — maar het is een keuze. Bespreek: wat toon jij bewust? Wat verberg je? Wat zie je bij anderen?'},
+  {nr:3,label:'Reputatie-analyse',tijd:'12 min',omschr:'Analyseer twee fictieve profielen (één zorgvuldig samengesteld, één onnadenkend). Welke indruk wekt elk? Bespreek: "Een werkgever, leerkracht of ouder kan dit ook zien — en dat 10 jaar later nog."'},
+  {nr:4,label:'Scenario\'s — Goede of slechte keuze?',tijd:'12 min',omschr:'Scenario-kaartjes: (1) Je post een grappige foto van een medeleerling zonder toestemming. (2) Je reageert boos op een commentaar. (3) Je deelt een petitie zonder de inhoud te lezen. (4) Je maakt een nieuw account aan om anoniem te reageren. Bespreek: hoe beïnvloedt dit jouw reputatie?'},
+  {nr:5,label:'Jouw positieve online identiteit',tijd:'8 min',omschr:'Leerlingen schrijven een "online identiteitsplan": 3 dingen die ze bewust willen uitstralen, 2 dingen die ze niet meer online willen doen, 1 ding dat ze zouden willen verbeteren aan hun online aanwezigheid.'},
+  {nr:6,label:'Afsluiter',tijd:'5 min',omschr:'"Je online identiteit bouw je zelf op — bewust of onbewust. Bewust is beter." Bespreek: wie wil je zijn online?'}
+],
+diff_support:'Gebruik slechts 2 scenario\'s. Focus op de boodschap: denk na voor je post.',
+diff_extend:'Laat leerlingen een "digitaal portfolio" ontwerpen: hoe zou een positief online profiel er voor hen uitzien over 5 jaar?',
+eval:['Leggen leerlingen het concept online identiteit uit in eigen woorden?','Noemen ze minstens 3 factoren die een online reputatie bepalen?','Formuleren ze minstens 2 concrete acties voor een positieve online identiteit?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.19–3.21 · Online identiteit en digitaal burgerschap'},
+
+{id:615,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 2G L7 — Auteursrecht in de praktijk',duur:'50 min',
+doel:'Auteursrecht en licenties correct toepassen bij het gebruik van online materiaal',
+doel_lang:'Leerlingen leren hoe auteursrecht werkt in de praktijk: welke materialen zijn vrij te gebruiken, welke niet, en hoe vind je legaal herbruikbaar materiaal? Ze oefenen met Creative Commons-licenties en leren hoe ze correct bronnen vermelden.',
+doelen:['Uitleggen wat auteursrecht is en voor wie het geldt','Creative Commons-licenties herkennen en correct toepassen','Legaal herbruikbaar materiaal opzoeken via specifieke tools','Bronnen correct vermelden voor verschillende materiaalsoorten'],
+materialen:['DSVM Handleiding 2e graad, les 7','Creative Commons-licentiekaarten','Computers met internettoegang','Opdracht: presentatie samenstellen met legale afbeeldingen'],
+stappen:[
+  {nr:1,label:'Opwarmer — Jij bent een maker',tijd:'6 min',omschr:'"Jij maakte een tekening en iemand gebruikt die in zijn YouTube-video zonder het te vragen. Hoe voel je je?" Bespreking: dat is wat auteursrecht beschermt. Jij als maker hebt rechten.'},
+  {nr:2,label:'Auteursrecht — de basis',tijd:'8 min',omschr:'Leg uit: auteursrecht ontstaat automatisch als je iets maakt (tekst, foto, muziek, code). Je hoeft niets te registreren. Het beschermt jou als maker. Maar: als jij iets van iemand anders wilt gebruiken, moet je toestemming vragen — of een licentie zoeken.',tip:'"Google Afbeeldingen zoeken is niet hetzelfde als vrij te gebruiken. Bijna alles wat je online ziet, heeft een auteursrecht."'},
+  {nr:3,label:'Creative Commons begrijpen',tijd:'12 min',omschr:'Bespreek de 4 CC-licentievarianten: BY (vermelding verplicht), NC (niet commercieel), ND (geen bewerkingen), SA (gelijke delen). Oefening: 6 scenario\'s — welke CC-licentie past hier? Leerlingen kiezen en motiveren.'},
+  {nr:4,label:'Legaal zoeken — Praktijkopdracht',tijd:'15 min',omschr:'Opdracht: zoek 3 afbeeldingen voor een denkbeeldige presentatie over "dieren in het regenwoud", legaal en vrij herbruikbaar. Gebruik: Creative Commons Search, Unsplash, Pixabay of Wikimedia Commons. Noteer voor elke afbeelding: titel, maker, licentie, URL.'},
+  {nr:5,label:'Afsluiter — Bronvermelding',tijd:'9 min',omschr:'Toon het verschil tussen een correcte en incorrecte bronvermelding. Leerlingen verbeteren 3 incorrecte bronvermeldingen. Eindboodschap: "Bronvermelding is respect voor de maker en eerlijkheid naar je lezer."'}
+],
+diff_support:'Beperk tot BY-licentie (vermelding verplicht). Zoek samen via één tool.',
+diff_extend:'Laat leerlingen de Creative Commons-licenties van materialen op de schoolwebsite analyseren: zijn ze correct vermeld?',
+eval:['Leggen leerlingen uit wat auteursrecht is en hoe het ontstaat?','Herkennen ze minstens 2 CC-licentievarianten correct?','Vinden ze zelfstandig legaal herbruikbaar materiaal en vermelden ze de bron correct?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.22–3.23 · Auteursrecht en Creative Commons'},
+
+// ── 3e GRAAD (Fase 4, L5–L6) ──
+
+{id:616,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 3G L2 — Media en macht',duur:'60 min',
+doel:'Begrijpen hoe media macht uitoefenen en hoe je daar kritisch naar kijkt',
+doel_lang:'Leerlingen analyseren hoe media invloed hebben op de publieke opinie, wie er achter media zit, en hoe mediabedrijven winstgericht werken. Ze leren het begrip "mediabias" kennen en oefenen in het herkennen van framing in nieuwsartikelen.',
+doelen:['Het begrip "mediabias" definiëren en voorbeelden geven','Framing herkennen in twee nieuwsartikelen over dezelfde gebeurtenis','Begrijpen hoe eigendomsstructuren van media hun inhoud kunnen beïnvloeden','Een eigen standpunt formuleren over de rol van media in de democratie'],
+materialen:['DSVM Werkboek 3e graad, les 2','Twee artikels over dezelfde gebeurtenis uit verschillende media','Framinganalyse-schema','Debatkaarten'],
+stappen:[
+  {nr:1,label:'Opwarmer — Wie bezit de media?',tijd:'8 min',omschr:'Toon een vereenvoudigd schema van mediabedrijven in Vlaanderen. Wie bezit welke kranten, tv-zenders, radiostations? Bespreking: "Als 1 bedrijf veel media bezit, beïnvloedt dat dan wat je leest en ziet?"'},
+  {nr:2,label:'Framing — hetzelfde nieuws, andere bril',tijd:'15 min',omschr:'Analyseer twee artikels over dezelfde politieke of maatschappelijke kwestie uit twee verschillende media. Leerlingen gebruiken het framinganalyse-schema: woordkeuze (neutraal/geladen?), welke bronnen worden geciteerd, welke feiten worden benadrukt, welke worden weggelaten.',tip:'"Framing is niet liegen — het is kiezen welk deel van de waarheid je benadrukt. Dat kan even misleidend zijn als een leugen."'},
+  {nr:3,label:'Mediabias bestuderen',tijd:'10 min',omschr:'Bespreek: wat is mediabias? Commerciële belangen (reclame-inkomsten), politieke aansluiting, eigendomsstructuur. Gebruik een mediawijsheid-classificatieschema (of maak er een). Beoordeel: waar situeert medium X zich op het spectrum?'},
+  {nr:4,label:'Debat — Media en democratie',tijd:'15 min',omschr:'Stelling: "Onafhankelijke media zijn essentieel voor een goed werkende democratie." Leerlingen bereiden een argument voor en debatteren in klein groepjes. Nabespreking: wat zijn de grenzen van mediavrijheid?'},
+  {nr:5,label:'Afsluiter',tijd:'12 min',omschr:'"Kritisch mediagebruik begint bij de vraag: wie profiteert van dit verhaal?" Bespreek: hoe zorg je voor een diverse nieuwsdieet? Welke media lees/kijk/luister je bewust?'}
+],
+diff_support:'Beperk tot één artikel en één framingvraag. Doe de analyse samen als klas.',
+diff_extend:'Laat leerlingen zelf de mediabias van 3 Vlaamse media beoordelen op basis van 5 criteria. Schrijf een onderbouwde analyse.',
+eval:['Definiëren leerlingen mediabias correct met een eigen voorbeeld?','Herkennen ze minstens 3 framingkenmerken in een artikel?','Formuleren ze een onderbouwd standpunt over media en democratie?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.24–3.26 · Mediabias en mediamacht'},
+
+{id:617,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 3G L5 — AI en synthetische media',duur:'60 min',
+doel:'Begrijpen hoe AI media-inhoud creëert en hoe je synthetische media herkent',
+doel_lang:'Leerlingen leren hoe kunstmatige intelligentie teksten, beelden en video\'s genereert die nauwelijks van echt te onderscheiden zijn. Ze ontdekken de risico\'s van deepfakes en AI-gegenereerde tekst voor informatie-integriteit, en oefenen met verificatietechnieken.',
+doelen:['Uitleggen hoe AI tekst, beeld en audio genereert','Minstens 3 kenmerken van deepfake-video\'s beschrijven','Verificatietechnieken toepassen op AI-gegenereerde inhoud','De ethische implicaties van synthetische media bespreken'],
+materialen:['DSVM Werkboek 3e graad, les 5','Voorbeelden van AI-gegenereerde en echte media (schoolveilig gecureerd)','Deepfake-detectie-checklist','Computers met internettoegang'],
+stappen:[
+  {nr:1,label:'Opwarmer — Echt of AI?',tijd:'8 min',omschr:'Toon 6 items: teksten, beelden, een audiofragment — mix van echt en AI-gegenereerd. Leerlingen stemmen. Bespreking: hoe moeilijk was het? Wat waren de signalen?'},
+  {nr:2,label:'Hoe werkt generatieve AI?',tijd:'10 min',omschr:'Vereenvoudigde uitleg: AI heeft miljoenen voorbeelden gezien en leert patronen. Bij tekst: het voorspelt het meest waarschijnlijke volgende woord. Bij beeld: het genereert pixels op basis van een beschrijving. Het "weet" niet wat waar is — het genereert wat plausibel klinkt.',tip:'"Een AI-taalmodel liegt niet — het heeft geen intentie. Maar het kan fout zijn. En het klinkt altijd overtuigend."'},
+  {nr:3,label:'Deepfakes analyseren',tijd:'12 min',omschr:'Bespreek de deepfake-detectie-checklist: (1) Bevriezen of flikkeren van gezicht bij snelle beweging. (2) Onnatuurlijke oogknipperingen. (3) Vervaging aan de rand van het gezicht. (4) Lichtinval klopt niet. (5) Audio past niet perfect bij lippenbewegingen. Oefen op schoolveilige voorbeelden.'},
+  {nr:4,label:'Ethisch debat — AI-media en vertrouwen',tijd:'15 min',omschr:'Stelling: "AI-gegenereerde media zijn een bedreiging voor de democratie." Groepen bereiden een pro- en contra-argument voor. Debat. Nabespreking: wat zijn de grenzen van AI-gebruik in media? Wie is verantwoordelijk?'},
+  {nr:5,label:'Afsluiter — Wat nu?',tijd:'15 min',omschr:'Bespreek: welke verificatietechnieken gebruik je bij twijfel? Drie bronnen voor de toekomst: fact-checksites, reverse image search, audio-analyse-tools. Eindboodschap: "De vraag is niet of AI-media bestaan, maar of jij ze kunt herkennen."'}
+],
+diff_support:'Focus op tekst-AI: lees 2 AI-gegenereerde teksten en bespreek de kenmerken.',
+diff_extend:'Laat leerlingen zelf een AI-tool (schoolveilig) testen: genereer een korte tekst en analyseer kritisch: wat klopt, wat niet, wat ontbreekt?',
+eval:['Leggen leerlingen uit hoe generatieve AI werkt in eigen woorden?','Herkennen ze minstens 3 kenmerken van AI-gegenereerde of deepfake-media?','Formuleren ze een onderbouwde ethische positie over AI-media?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.27–3.29 · AI, deepfakes en synthetische media'},
+
+{id:618,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · 3G L6 — Filterbubbels doorprikken',duur:'55 min',
+doel:'Begrijpen hoe algoritmen een filterbubbel creëren en hoe je je informatiedieet diversifieert',
+doel_lang:'Leerlingen analyseren hoe aanbevelingsalgoritmen van sociale media en zoekresultaten een bubbel creëren van gelijksoortige informatie. Ze leren de risico\'s hiervan voor hun wereldbeeld, en ontdekken hoe ze bewust hun informatiedieet kunnen uitbreiden.',
+doelen:['Het begrip filterbubbel definiëren en voorbeelden geven','Uitleggen hoe aanbevelingsalgoritmen werken en wat ze optimaliseren','De risico\'s van filterbubbels voor democratie en polarisatie beschrijven','Minstens 3 concrete strategieën gebruiken om de bubbel te doorbreken'],
+materialen:['DSVM Werkboek 3e graad, les 6','Simulatie: twee "feeds" met verschillende algoritmische curatie','Diversiteitsmeter-werkblad','Computers of tablets'],
+stappen:[
+  {nr:1,label:'Opwarmer — Jouw online bubbel',tijd:'7 min',omschr:'"Wie volg je op sociale media? Wie volgt je? Zijn dat mensen die veel op jou lijken, of zijn het diverse mensen?" Bespreking: algoritmen sturen je naar mensen en inhoud die je al leuk vindt — want dat houdt je langer op het platform.'},
+  {nr:2,label:'Hoe werkt een aanbevelingsalgoritme?',tijd:'12 min',omschr:'Vereenvoudigde uitleg: elk platform wil je zo lang mogelijk actief houden. Het toont je wat je waarschijnlijk leuk vindt, op basis van wat je eerder bekeken hebt. Dat werkt — maar het creëert een bubbel. Demonstratie: twee fictieve "feeds" voor twee verschillende gebruikers over hetzelfde onderwerp.',tip:'"Het algoritme optimaliseert niet voor waarheid of diversiteit — het optimaliseert voor jouw aandacht."'},
+  {nr:3,label:'Simulatie — Twee bubbels',tijd:'10 min',omschr:'Leerlingen analyseren twee fictieve feeds over hetzelfde nieuws (bv. een staking of sportevenement). Feed A: rechts-conservatief gestuurd. Feed B: progressief-stedelijk gestuurd. Vergelijk: wat zien gebruikers in elke bubbel? Wat niet? Wie heeft "gelijk"?'},
+  {nr:4,label:'Diversiteitsmeter',tijd:'10 min',omschr:'Leerlingen meten hun eigen informatiedieet: Hoeveel verschillende standpunten lees je? Volg je media die jou uitdagen? Hoeveel van je nieuws komt van één platform? Bespreking: hoe divers is jouw bubbel?'},
+  {nr:5,label:'Bubbel doorbreken — Strategieën',tijd:'10 min',omschr:'Bespreek 5 concrete strategieën: (1) Volg bewust ook mensen met andere meningen. (2) Lees nieuws op meerdere platforms. (3) Gebruik incognito-venster voor zoekopdrachten. (4) Volg internationale media. (5) Praat met mensen die anders denken dan jij.'},
+  {nr:6,label:'Afsluiter',tijd:'6 min',omschr:'"Een goede burger in een democratie heeft nood aan gevarieerde informatie." Bespreek: hoe past bewust informatiegebruik bij goed burgerschap?'}
+],
+diff_support:'Focus op het concept: "het algoritme toont je wat je al leuk vindt." Gebruik één vergelijking.',
+diff_extend:'Laat leerlingen een "mediapiloot" ontwerpen: stel voor 1 week een nieuwsconsumptieplan op dat bewust buiten de bubbel treedt.',
+eval:['Definiëren leerlingen filterbubbel correct?','Leggen ze uit hoe een aanbevelingsalgoritme werkt?','Noemen ze minstens 2 concrete gevolgen en 2 strategieën?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.30–3.32 · Filterbubbels en algoritmische curatie'},
+
+{id:619,ll:'media',f:'4',mw:true,
+mw_link:'https://mediawijs.be/schaal-van-m',
+titel:'Schaal van M · Extra — Slim op het internet',duur:'45 min',
+doel:'Veilig en slim surfen op het internet — praktische tips voor het dagelijks gebruik',
+doel_lang:'Een praktische les over veilig internetgebruik voor leerlingen van L5–L6: sterke wachtwoorden, phishing herkennen, veilig online winkelen en communiceren. Focus op directe toepasbaarheid in het dagelijks leven.',
+doelen:['Een sterk wachtwoord aanmaken en uitleggen waarom het sterk is','Phishing-berichten herkennen aan minstens 3 kenmerken','Veilige van onveilige websites onderscheiden','Praktische veiligheidsgewoonten toepassen in het dagelijks leven'],
+materialen:['Mediawijs — Slim op het internet (3e graad)','Wachtwoord-sterktemeter (online tool)','Phishing-voorbeeldberichten','Veiligheids-checklist'],
+stappen:[
+  {nr:1,label:'Opwarmer — Hoe sterk is jouw wachtwoord?',tijd:'6 min',omschr:'Leerlingen bedenken een wachtwoord (fictief) en testen het op een wachtwoord-sterktemeter. Bespreking: wat maakt een wachtwoord sterk? Lang, mix van tekens, niet persoonlijk. Bespreek: "password123" vs. "M@gisch3Draak#2026".'},
+  {nr:2,label:'Phishing herkennen',tijd:'12 min',omschr:'Toon 4 e-mails of berichten: 2 echt, 2 phishing. Leerlingen identificeren de kenmerken: (1) Urgentie ("Je account wordt geblokkeerd!"). (2) Vreemde afzender of URL. (3) Schrijffouten. (4) Vraagt om wachtwoord of bankgegevens. (5) Onverwacht aanbod dat te goed is.',tip:'"Geen enkel legitiem bedrijf vraagt ooit via e-mail om je wachtwoord of bankgegevens."'},
+  {nr:3,label:'Veilige websites herkennen',tijd:'8 min',omschr:'Bespreek: https vs http, slotje in de browser, betrouwbaarheidsindicatoren. Leerlingen analyseren 4 URL-voorbeelden: veilig of niet? Bespreek: "https betekent dat de verbinding versleuteld is — niet dat de website betrouwbaar is."'},
+  {nr:4,label:'Veiligheids-checklist invullen',tijd:'12 min',omschr:'Leerlingen vullen individueel een veiligheids-checklist in: (1) Heb ik voor elk account een ander wachtwoord? (2) Gebruik ik tweestapsverificatie waar mogelijk? (3) Download ik alleen apps van officiële stores? (4) Deel ik mijn wachtwoorden nooit? (5) Controleer ik altijd de URL voor ik inlog? Bespreek de resultaten.'},
+  {nr:5,label:'Afsluiter — Mijn top-3 veiligheidsgewoonten',tijd:'7 min',omschr:'Leerlingen kiezen hun persoonlijke top-3 veiligheidsgewoonten die ze voortaan zullen toepassen. Schrijf ze op een kaartje voor thuis.'}
+],
+diff_support:'Focus op phishing herkennen en het https-slotje. Doe alles als klassikale activiteit.',
+diff_extend:'Laat leerlingen een "digitale veiligheidsinspectie" uitvoeren bij een familielid: hoe sterk zijn hun wachtwoorden? Gebruiken ze tweestapsverificatie?',
+eval:['Benoemen leerlingen minstens 3 kenmerken van een sterk wachtwoord?','Herkennen ze phishing-berichten correct aan minstens 2 kenmerken?','Stellen ze minstens 2 concrete veiligheidsgewoonten voor?'],
+ll_doel:'Mediawijsheid › Schaal van M · DIG 3.33–3.35 · Online veiligheid en digitale geletterdheid'},
+
+]; // einde LESSEN_MW
+LESSEN_MW.forEach(l => LESSONS.push(l));
+
+
 const DIG_CODES = {
+  // ── Schaal van M — Mediawijs (nov 2026) ──
+  600: ['DIG 3.1','DIG 3.2'],
+  601: ['DIG 3.3','DIG 3.4'],
+  602: ['DIG 3.5','DIG 3.6','DIG 3.7'],
+  603: ['DIG 3.8','DIG 3.9','DIG 3.10'],
+  610: ['DIG 3.11','DIG 3.12','DIG 3.13'],
+  611: ['DIG 3.14','DIG 3.15'],
+  612: ['DIG 3.16','DIG 3.17'],
+  613: ['DIG 3.18','DIG 3.19','DIG 3.20'],
+  614: ['DIG 3.19','DIG 3.20','DIG 3.21'],
+  615: ['DIG 3.22','DIG 3.23'],
+  616: ['DIG 3.24','DIG 3.25','DIG 3.26'],
+  617: ['DIG 3.27','DIG 3.28','DIG 3.29'],
+  618: ['DIG 3.30','DIG 3.31','DIG 3.32'],
+  619: ['DIG 3.33','DIG 3.34','DIG 3.35'],
   // nieuwe lessen F1/F2 (okt 2026)
   500: ['DIG 1.2'], 501: ['DIG 1.1','DIG 1.3'], 502: ['DIG 2.2'], 503: ['DIG 2.1'], 504: ['DIG 2.3'], 505: ['DIG 3.1'],
   506: ['DIG 1.4'], 507: ['DIG 1.1'], 508: ['DIG 2.5'], 509: ['DIG 2.3','DIG 2.6'], 510: ['DIG 3.1'],
@@ -4054,6 +4359,7 @@ function renderGrid(){
     <div class="cmeta"><span><svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${l.duur}</span>${beoordelingBadge}</div>
     ${l.dig_codes&&l.dig_codes.length?'<div class="dig-codes">'+l.dig_codes.map(c=>'<span class="dig-code '+l.ll+'">'+c+'</span>').join('')+'</div>':''}
     ${l.unplugged?'<span class="up-badge">✂ unplugged</span>':''}
+    ${l.mw?'<span class="mw-badge">🌱 Mediawijs</span>':''}
     ${gegevenBadge}
     <div class="cphase">${FL[l.f]}${aP!=='all'&&l.f!==aP&&aV?'<span class="var-badge">'+FASE_VARIANTEN[aV].icoon+' '+FASE_VARIANTEN[aV].naam+'</span>':''}</div>
   </div>`;
@@ -4112,6 +4418,7 @@ function renderDetail(id){
       ${l.auteur?'<span class="tag n" title="Les ingediend door een collega">✍ '+l.auteur+'</span>':''}
       ${l.dig_codes&&l.dig_codes.length ? l.dig_codes.map(c=>'<span class="dig-code '+l.ll+'" style="font-size:10px;padding:3px 8px;border-radius:6px">'+c+'</span>').join('') : ''}
       ${l.unplugged?'<span class="up-badge">✂ unplugged — geen computer nodig</span>':''}
+      ${l.mw?'<span class="mw-badge">🌱 Mediawijs — Schaal van M</span>':''}
     </div>
     <div class="ddoel">${l.doel_lang}</div>
     ${(() => {
